@@ -1,0 +1,58 @@
+name: coopconnects
+description: A cafeteria management app
+
+# The version of your app, e.g., 1.0.0
+version: 1.0.0+1
+
+# Define your dependencies here.
+dependencies:
+  flutter:
+    sdk: flutter
+
+  # Firebase dependencies
+  firebase_core: ^3.8.0            # Firebase setup
+  firebase_auth: ^5.3.3            # For authentication
+  firebase_database: ^11.1.6       # Firebase Realtime Database
+  cloud_firestore: ^5.5.0          # Firestore
+  firebase_messaging: ^15.1.5      # For push notifications
+
+  # Google and Facebook sign-in
+  google_sign_in: ^6.2.2           # Google sign-in integration
+  flutter_facebook_auth: ^7.1.1    # Facebook sign-in integration
+
+  # State management
+  provider: ^6.1.2                 # State management with Provider
+
+  # UI & Custom Widgets
+  flutter_local_notifications: ^18.0.1 # For local notifications
+  flutter_staggered_grid_view: ^0.7.0 # For grid view of food items (optional)
+
+  # Image Caching & Formatting
+  cached_network_image: ^3.4.1      # Caching for images loaded from the network
+  intl: ^0.19.0                     # Downgraded to match flutter_form_builder's requirement
+
+  # Form Validation (optional for form validation)
+  flutter_form_builder: ^9.5.0      # For form validation (if you’re using forms)
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+
+  # Linting (Optional, but helps in maintaining code quality)
+  flutter_lints: ^5.0.0
+
+# Assets and fonts
+flutter:
+  uses-material-design: true
+  assets:
+    - assets/images/            # Add your image resources here
+    - assets/icons/              # Add your icon resources here
+  fonts:
+    - family: Roboto
+      fonts:
+        - asset: assets/fonts/Roboto-Regular.ttf
+        - asset: assets/fonts/Roboto-Bold.ttf
+
+# SDK version constraint
+environment:
+  sdk: "^3.5.0"
