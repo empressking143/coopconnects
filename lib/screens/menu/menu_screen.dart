@@ -6,8 +6,8 @@ class MenuScreen extends StatelessWidget {
     return Column(
       children: [
         SizedBox(
-          width: 117,
-          height: 30,
+          width: 200,
+          height: 50,
           child: Text(
             'KIOSK #',
             style: TextStyle(
@@ -15,12 +15,11 @@ class MenuScreen extends StatelessWidget {
               fontSize: 24,
               fontFamily: 'Poppins',
               fontWeight: FontWeight.w600,
-              height: 0,
             ),
           ),
         ),
         SizedBox(
-          width: 82,
+          width: 200,
           height: 30,
           child: Text(
             'Price',
@@ -30,7 +29,6 @@ class MenuScreen extends StatelessWidget {
               fontSize: 24,
               fontFamily: 'Poppins',
               fontWeight: FontWeight.w500,
-              height: 0,
             ),
           ),
         ),
@@ -47,56 +45,50 @@ class MenuScreen extends StatelessWidget {
   }
 
   Widget _buildMenuItem(String name, String price) {
-    return Column(
-      children: [
-        Container(
-          width: 238,
-          height: 41,
-          decoration: ShapeDecoration(
-            color: Colors.white,
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(10),
-            ),
-            shadows: [
-              BoxShadow(
-                color: Color(0x3F000000),
-                blurRadius: 4,
-                offset: Offset(0, 4),
-                spreadRadius: 0,
-              )
-            ],
+    return Container(
+      margin: EdgeInsets.symmetric(vertical: 8),
+      padding: EdgeInsets.symmetric(horizontal: 16),
+      decoration: BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.circular(10),
+        boxShadow: [
+          BoxShadow(
+            color: Color(0x3F000000),
+            blurRadius: 4,
+            offset: Offset(0, 4),
           ),
-        ),
-        SizedBox(
-          width: 146,
-          height: 29,
-          child: Text(
-            name,
-            style: TextStyle(
-              color: Color(0xFF800000),
-              fontSize: 17,
-              fontFamily: 'Poppins',
-              fontWeight: FontWeight.w400,
-              height: 0,
+        ],
+      ),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          SizedBox(
+            width: 120,
+            child: Text(
+              name,
+              style: TextStyle(
+                color: Color(0xFF800000),
+                fontSize: 17,
+                fontFamily: 'Poppins',
+                fontWeight: FontWeight.w400,
+              ),
             ),
           ),
-        ),
-        SizedBox(
-          width: 146,
-          height: 27,
-          child: Text(
-            price,
-            textAlign: TextAlign.center,
-            style: TextStyle(
-              color: Color(0xFF800000),
-              fontSize: 17,
-              fontFamily: 'Poppins',
-              fontWeight: FontWeight.w400,
-              height: 0,
+          SizedBox(
+            width: 80,
+            child: Text(
+              price,
+              textAlign: TextAlign.right,
+              style: TextStyle(
+                color: Color(0xFF800000),
+                fontSize: 17,
+                fontFamily: 'Poppins',
+                fontWeight: FontWeight.w400,
+              ),
             ),
           ),
-        ),
-      ],
+        ],
+      ),
     );
   }
 }
