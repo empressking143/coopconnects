@@ -1,26 +1,22 @@
-import 'package:coopconnects/firebase_options.dart';
-import 'package:coopconnects/routes.dart';
-import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'widgets/app_bar.dart';
+import 'widgets/nav_bar.dart';
+import 'screens/home/home_screen.dart';
 
-void main() async {
-  WidgetsFlutterBinding.ensureInitialized();
-  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
-  runApp(MyApp());
+void main() {
+  runApp(const FigmaToCodeApp());
 }
 
-class MyApp extends StatelessWidget {
+class FigmaToCodeApp extends StatelessWidget {
+  const FigmaToCodeApp({super.key});
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'CoopConnects',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-        visualDensity: VisualDensity.adaptivePlatformDensity,
+      theme: ThemeData.dark().copyWith(
+        scaffoldBackgroundColor: Color(0xFFFFF8E8),
       ),
-      initialRoute: '/',
-      onGenerateRoute: generateRoute, // Setting up routing
-      debugShowCheckedModeBanner: false,
+      home: HomeScreen(), // Set HomeScreen as the first screen
     );
   }
 }
