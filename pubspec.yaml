@@ -42,16 +42,16 @@ dev_dependencies:
   flutter_lints: ^5.0.0
 
 # Assets and fonts
-flutter:
-  uses-material-design: true
-  assets:
-    - assets/images/            # Add your image resources here
-    - assets/icons/              # Add your icon resources here
-  fonts:
-    - family: Roboto
-      fonts:
-        - asset: assets/fonts/Roboto-Regular.ttf
-        - asset: assets/fonts/Roboto-Bold.ttf
+# flutter:
+#   uses-material-design: true
+#   assets:
+#     - assets/images/            # Add your image resources here
+#     - assets/icons/              # Add your icon resources here
+#   fonts:
+#     - family: Roboto
+#       fonts:
+#         - asset: assets/fonts/Roboto-Regular.ttf
+#         - asset: assets/fonts/Roboto-Bold.ttf
 
 # SDK version constraint
 environment:
