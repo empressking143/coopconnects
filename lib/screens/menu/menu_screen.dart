@@ -1,47 +1,94 @@
 import 'package:flutter/material.dart';
-import 'package:coopconnects/widgets/nav_bar.dart'; // Import the NavBar widget
-import 'package:coopconnects/widgets/app_bar.dart'; // Import your custom AppBarWidget
 
 class MenuScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBarWidget(), // Use your custom AppBarWidget here
-      body: Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(
-              'Menu Items:',
-              style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+    return Column(
+      children: [
+        SizedBox(
+          width: 200,
+          height: 50,
+          child: Text(
+            'KIOSK #',
+            style: TextStyle(
+              color: Color(0xFF800000),
+              fontSize: 24,
+              fontFamily: 'Poppins',
+              fontWeight: FontWeight.w600,
             ),
-            SizedBox(height: 20),
-            ListTile(
-              title: Text('Item 1'),
-              leading: Icon(Icons.fastfood),
-              onTap: () {
-                // Handle the tap for Item 1
-              },
-            ),
-            ListTile(
-              title: Text('Item 2'),
-              leading: Icon(Icons.fastfood),
-              onTap: () {
-                // Handle the tap for Item 2
-              },
-            ),
-            ListTile(
-              title: Text('Item 3'),
-              leading: Icon(Icons.fastfood),
-              onTap: () {
-                // Handle the tap for Item 3
-              },
-            ),
-          ],
+          ),
         ),
+        SizedBox(
+          width: 200,
+          height: 30,
+          child: Text(
+            'Price',
+            textAlign: TextAlign.center,
+            style: TextStyle(
+              color: Color(0xFF800000),
+              fontSize: 24,
+              fontFamily: 'Poppins',
+              fontWeight: FontWeight.w500,
+            ),
+          ),
+        ),
+        _buildMenuItem('Beef Kare-kare', '₱ 50.00'),
+        _buildMenuItem('Beef Steak', '₱ 50.00'),
+        _buildMenuItem('Pork Sinigang', '₱ 50.00'),
+        _buildMenuItem('Pork Nilaga', '₱ 50.00'),
+        _buildMenuItem('Chicken Curry', '₱ 50.00'),
+        _buildMenuItem('Grilled Fish', '₱ 20.00'),
+        _buildMenuItem('Pork Barbeque', '₱ 15.00'),
+        _buildMenuItem('Menudo', '₱ 50.00'),
+      ],
+    );
+  }
+
+  Widget _buildMenuItem(String name, String price) {
+    return Container(
+      margin: EdgeInsets.symmetric(vertical: 8),
+      padding: EdgeInsets.symmetric(horizontal: 16),
+      decoration: BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.circular(10),
+        boxShadow: [
+          BoxShadow(
+            color: Color(0x3F000000),
+            blurRadius: 4,
+            offset: Offset(0, 4),
+          ),
+        ],
       ),
-      bottomNavigationBar: NavBar(), // Add the NavBar widget here
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          SizedBox(
+            width: 120,
+            child: Text(
+              name,
+              style: TextStyle(
+                color: Color(0xFF800000),
+                fontSize: 17,
+                fontFamily: 'Poppins',
+                fontWeight: FontWeight.w400,
+              ),
+            ),
+          ),
+          SizedBox(
+            width: 80,
+            child: Text(
+              price,
+              textAlign: TextAlign.right,
+              style: TextStyle(
+                color: Color(0xFF800000),
+                fontSize: 17,
+                fontFamily: 'Poppins',
+                fontWeight: FontWeight.w400,
+              ),
+            ),
+          ),
+        ],
+      ),
     );
   }
 }
