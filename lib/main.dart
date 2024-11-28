@@ -1,7 +1,7 @@
 import 'package:coopconnects/firebase_options.dart';
-import 'package:coopconnects/routes.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:coopconnects/notification/notification_screen.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -18,8 +18,7 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      initialRoute: '/',
-      onGenerateRoute: generateRoute, // Setting up routing
+      home: NotificationScreen(), // Set the initial screen directly to NotificationScreen
       debugShowCheckedModeBanner: false,
     );
   }
