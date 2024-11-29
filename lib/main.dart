@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
-import 'routes.dart'; // Import your route file
+import 'screens/home/home_screen.dart';
+
 void main() {
-  runApp(const FigmaToCodeApp());
+  runApp(const CoopConnects());
 }
 
-class FigmaToCodeApp extends StatelessWidget {
-  const FigmaToCodeApp({super.key});
+class CoopConnects extends StatelessWidget {
+  const CoopConnects({super.key});
 
   @override
   Widget build(BuildContext context) {
