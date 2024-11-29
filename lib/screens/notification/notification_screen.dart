@@ -1,19 +1,19 @@
 // lib/screens/notification_screen.dart
 
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 import 'package:coopconnects/providers/notification_provider.dart';
 import 'package:coopconnects/widgets/notification_widget.dart';
+import 'package:provider/provider.dart';
 
 class NotificationScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    // Fetch notifications when the screen is built
-    final notificationProvider = Provider.of<NotificationProvider>(context);
-    notificationProvider.fetchNotifications();
+    // Loading notifications
+    final provider = Provider.of<NotificationProvider>(context);
+    provider.loadNotifications();
 
     return Scaffold(
-      backgroundColor: Color(0xFFFFF8E8), // Set the background color to match the header
+      backgroundColor: Color(0xFFFFF8E8),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Column(
@@ -28,20 +28,13 @@ class NotificationScreen extends StatelessWidget {
                 fontWeight: FontWeight.w600,
               ),
             ),
-            SizedBox(height: 16), // Add space below the title
+            SizedBox(height: 16),
             Expanded(
-              child: Consumer<NotificationProvider>(
-                builder: (context, provider, child) {
-                  return ListView.builder(
-                    itemCount: provider.notifications.length,
-                    itemBuilder: (context, index) {
-                      final notification = provider.notifications[index];
-                      return NotificationCard(
-                        notification: notification,
-                        onTap: () => provider.markAsRead(index),
-                      );
-                    },
-                  );
+              child: ListView.builder(
+                itemCount: provider.notifications.length,
+                itemBuilder: (context, index) {
+                  final notification = provider.notifications[index];
+                  return NotificationWidget(notification: notification);
                 },
               ),
             ),

@@ -1,11 +1,12 @@
+// lib/widgets/notification_widget.dart
+
 import 'package:flutter/material.dart';
-import '../models/notification_model.dart';
+import 'package:coopconnects/models/notification_model.dart';
 
-class NotificationCard extends StatelessWidget {
+class NotificationWidget extends StatelessWidget {
   final NotificationModel notification;
-  final Function onTap;
 
-  NotificationCard({required this.notification, required this.onTap});
+  NotificationWidget({required this.notification});
 
   @override
   Widget build(BuildContext context) {
@@ -15,35 +16,42 @@ class NotificationCard extends StatelessWidget {
         borderRadius: BorderRadius.circular(10),
       ),
       elevation: 4,
-      color: Colors.white, // Set the background color of the card to white
+      color: Colors.white,
       child: Padding(
         padding: const EdgeInsets.all(16.0),
-        child: GestureDetector(
-          onTap: () => onTap(),  // Trigger onTap (e.g., mark as read)
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                notification.title,
-                style: TextStyle(
-                  color: Color(0xFF800000),
-                  fontSize: 15,
-                  fontFamily: 'Poppins',
-                  fontWeight: FontWeight.w700,
-                ),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              notification.title,
+              style: TextStyle(
+                color: Color(0xFF800000),
+                fontSize: 15,
+                fontFamily: 'Poppins',
+                fontWeight: FontWeight.w700,
               ),
-              SizedBox(height: 8),
-              Text(
-                notification.message,
-                style: TextStyle(
-                  color: Color(0xFF800000),
-                  fontSize: 12,
-                  fontFamily: 'Poppins',
-                  fontWeight: FontWeight.w400,
-                ),
+            ),
+            SizedBox(height: 8),
+            Text(
+              notification.message,
+              style: TextStyle(
+                color: Color(0xFF800000),
+                fontSize: 12,
+                fontFamily: 'Poppins',
+                fontWeight: FontWeight.w400,
               ),
-            ],
-          ),
+            ),
+            SizedBox(height: 8),
+            Text(
+              notification.time,
+              style: TextStyle(
+                color: Color(0xFF800000),
+                fontSize: 10,
+                fontFamily: 'Poppins',
+                fontWeight: FontWeight.w300,
+              ),
+            ),
+          ],
         ),
       ),
     );
