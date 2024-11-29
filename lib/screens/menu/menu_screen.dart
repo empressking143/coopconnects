@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:coopconnects/widgets/app_bar.dart'; // Import the custom AppBar
+import 'package:coopconnects/widgets/nav_bar.dart'; // Import the custom NavBar
 
 void main() {
   runApp(MyApp());
@@ -19,6 +21,8 @@ class MyApp extends StatelessWidget {
 }
 
 class MenuScreen extends StatefulWidget {
+  const MenuScreen({super.key});
+
   @override
   _MenuScreenState createState() => _MenuScreenState();
 }
@@ -60,6 +64,8 @@ class _MenuScreenState extends State<MenuScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Color(0xFFFFF8E8), // Background color
+      appBar: AppBarWidget(),  // Use your custom AppBar
+      bottomNavigationBar: NavBar(), // Use your custom NavBar
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Column(
