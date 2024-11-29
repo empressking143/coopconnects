@@ -2,6 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:coopconnects/widgets/app_bar.dart'; // Import the custom AppBar
 import 'package:coopconnects/widgets/nav_bar.dart'; // Import the custom NavBar
 
+class MenuScreen extends StatefulWidget {
+  const MenuScreen({super.key});
+  @override
+  _MenuScreenState createState() => _MenuScreenState();
+}
+
 class _MenuScreenState extends State<MenuScreen> {
   String selectedCategory = 'All';  // Default category
   List<Map<String, String>> menuItems = [  // Menu data with categories
