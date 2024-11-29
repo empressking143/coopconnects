@@ -24,7 +24,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData.dark().copyWith(
         scaffoldBackgroundColor: Color(0xFFFFF8E8),
       ),
-      home: HomeScreen(),  // HomeScreen is the start screen
+      home: MenuScreen(),  // HomeScreen is the start screen
       routes: {
         '/notifications': (context) => NotificationScreen(),  // Add NotificationScreen route
         '/menu': (context) => MenuScreen(),  // Add MenuScreen route if needed
