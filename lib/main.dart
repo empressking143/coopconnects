@@ -1,20 +1,26 @@
 import 'package:flutter/material.dart';
-import 'screens/notification/notification_screen.dart';
+import 'package:provider/provider.dart';  // Make sure to import the provider package
+import 'package:coopconnects/screens/notification/notification_screen.dart';
+import 'providers/notification_provider.dart';  // Import the NotificationProvider
 
 void main() {
-  runApp(const CoopConnects());
+  runApp(MyApp());
 }
 
-class CoopConnects extends StatelessWidget {
-  const CoopConnects({super.key});
-
+class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      theme: ThemeData.dark().copyWith(
-        scaffoldBackgroundColor: Color(0xFFFFF8E8),
+    return MultiProvider(
+      providers: [
+        ChangeNotifierProvider(create: (_) => NotificationProvider()),
+      ],
+      child: MaterialApp(
+        title: 'CoopConnects',
+        theme: ThemeData(
+          primarySwatch: Colors.red,
+        ),
+        home: NotificationScreen(),
       ),
-      home: NotificationScreen(), // Set HomeScreen as the first screen
     );
   }
 }
