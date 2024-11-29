@@ -1,21 +1,19 @@
 import 'package:flutter/material.dart';
 import 'routes.dart'; // Import your route file
-
 void main() {
-  runApp(MyApp());
+  runApp(const FigmaToCodeApp());
 }
 
-class MyApp extends StatelessWidget {
+class FigmaToCodeApp extends StatelessWidget {
+  const FigmaToCodeApp({super.key});
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'CoopConnects App',
-      theme: ThemeData(
+      theme: ThemeData.dark().copyWith(
         scaffoldBackgroundColor: Color(0xFFFFF8E8),
-        primarySwatch: Colors.red,
       ),
-      initialRoute: '/', // Default route
-      onGenerateRoute: generateRoute, // Refer to route.dart for route handling
+      home: HomeScreen(), // Set HomeScreen as the first screen
     );
   }
 }
