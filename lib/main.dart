@@ -1,20 +1,29 @@
+// main.dart
 import 'package:flutter/material.dart';
-import 'screens/home/home_screen.dart';
+import 'package:provider/provider.dart';
+import 'screens/kiosk/kiosk_screen.dart';
+import 'providers/kiosk_provider.dart';
 
 void main() {
-  runApp(const CoopConnects());
+  runApp(
+    ChangeNotifierProvider(
+      create: (_) => KioskProvider(),
+      child: MyApp(),
+    ),
+  );
 }
 
-class CoopConnects extends StatelessWidget {
-  const CoopConnects({super.key});
-
+class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      theme: ThemeData.dark().copyWith(
-        scaffoldBackgroundColor: Color(0xFFFFF8E8),
+      title: 'CoopConnects',
+      theme: ThemeData(
+        primarySwatch: Colors.blue,
+        visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      home: HomeScreen(), // Set HomeScreen as the first screen
+      home: KioskScreen(), // Directing to KioskScreen
+      debugShowCheckedModeBanner: false,
     );
   }
 }
