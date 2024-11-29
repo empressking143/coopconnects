@@ -1,20 +1,27 @@
 import 'package:flutter/material.dart';
-import 'screens/home/home_screen.dart';
+import 'package:provider/provider.dart';
+import 'screens/menu/menu_screen.dart';
+import 'providers/menu_provider.dart';
 
 void main() {
-  runApp(const CoopConnects());
+  runApp(
+    ChangeNotifierProvider(
+      create: (context) => MenuProvider(),
+      child: MyApp(),
+    ),
+  );
 }
 
-class CoopConnects extends StatelessWidget {
-  const CoopConnects({super.key});
-
+class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      theme: ThemeData.dark().copyWith(
-        scaffoldBackgroundColor: Color(0xFFFFF8E8),
+      title: 'CoopConnects',
+      theme: ThemeData(
+        primarySwatch: Colors.red,
+        visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      home: HomeScreen(), // Set HomeScreen as the first screen
+      home: MenuScreen(),
     );
   }
 }
