@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'screens/home/home_screen.dart';
+import 'screens/notification/notification_screen.dart';
 
 void main() {
   runApp(const CoopConnects());
@@ -14,7 +14,7 @@ class CoopConnects extends StatelessWidget {
       theme: ThemeData.dark().copyWith(
         scaffoldBackgroundColor: Color(0xFFFFF8E8),
       ),
-      home: HomeScreen(), // Set HomeScreen as the first screen
+      home: NotificationScreen(), // Set HomeScreen as the first screen
     );
   }
 }
