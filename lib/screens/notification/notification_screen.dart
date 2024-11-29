@@ -57,6 +57,7 @@ class NotificationCard extends StatelessWidget {
         borderRadius: BorderRadius.circular(10),
       ),
       elevation: 4,
+      color: Colors.white, // Set the background color of the card to white
       child: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Column(
