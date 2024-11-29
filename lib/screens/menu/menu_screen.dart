@@ -2,24 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:coopconnects/widgets/app_bar.dart'; // Import the custom AppBar
 import 'package:coopconnects/widgets/nav_bar.dart'; // Import the custom NavBar
 
-void main() {
-  runApp(MyApp());
-}
-
-class MyApp extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Menu App',
-      theme: ThemeData(
-        scaffoldBackgroundColor: Color(0xFFFFF8E8), // Set the background color to #FFF8E8
-        primarySwatch: Colors.red, 
-      ),
-      home: MenuScreen(),
-    );
-  }
-}
-
 class MenuScreen extends StatefulWidget {
   const MenuScreen({super.key});
 
