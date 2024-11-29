@@ -11,10 +11,11 @@ class CoopConnects extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,  // Removes the debug banner
       theme: ThemeData.dark().copyWith(
         scaffoldBackgroundColor: Color(0xFFFFF8E8),
       ),
-      home: HomeScreen(), // Set HomeScreen as the first screen
+      home: HomeScreen(),
     );
   }
 }
