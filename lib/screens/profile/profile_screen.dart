@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:coopconnects/widgets/nav_bar.dart';
+import 'package:coopconnects/widgets/app_bar.dart'; // Import the custom AppBar
+import 'package:coopconnects/widgets/nav_bar.dart'; // Import the custom NavBar
 
 class ProfileScreen extends StatelessWidget {
+  const ProfileScreen({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
