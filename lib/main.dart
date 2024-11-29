@@ -1,8 +1,5 @@
 import 'package:flutter/material.dart';
-import 'widgets/app_bar.dart';
-import 'widgets/nav_bar.dart';
-import 'screens/home/home_screen.dart';
-
+import 'routes.dart'; // Import your route file
 void main() {
   runApp(const FigmaToCodeApp());
 }
