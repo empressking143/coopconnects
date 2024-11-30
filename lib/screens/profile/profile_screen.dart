@@ -1,7 +1,6 @@
 import 'package:coopconnects/widgets/nav_bar.dart';
 import 'package:flutter/material.dart';
-import 'package:coopconnects/widgets/app_bar.dart';
-import 'package:coopconnects/widgets/app_bar.dart';
+import 'package:coopconnects/widgets/app_bar2.dart';
 
 class ProfileScreen extends StatelessWidget {
   @override
@@ -10,7 +9,7 @@ class ProfileScreen extends StatelessWidget {
       debugShowCheckedModeBanner: false, // Hides the debug banner
       home: Scaffold(
         backgroundColor: Color(0xFFFFF8E8), // Set the background color of the screen
-        appBar: AppBarWidget(), // Remove AppBar
+        appBar: AppBarWidget2(), // Remove AppBar
         body: Padding(
           padding: const EdgeInsets.all(16.0),
           child: Column(

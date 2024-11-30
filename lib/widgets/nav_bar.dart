@@ -19,9 +19,10 @@ class NavBar extends StatelessWidget {
               child: IconButton(
                 icon: Icon(Icons.menu, color: Colors.white, size: 28),
                 onPressed: () {
+                  // Use a fade transition for smooth navigation
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => KioskScreen()),
+                    _fadeRoute(KioskScreen()),
                   );
                 },
               ),
@@ -31,9 +32,10 @@ class NavBar extends StatelessWidget {
               child: IconButton(
                 icon: Icon(Icons.home, color: Colors.white, size: 28),
                 onPressed: () {
-                  Navigator.pushReplacement(
+                  // Use a fade transition for smooth navigation
+                  Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => HomeScreen()),
+                    _fadeRoute(HomeScreen()),
                   );
                 },
               ),
@@ -43,9 +45,10 @@ class NavBar extends StatelessWidget {
               child: IconButton(
                 icon: Icon(Icons.person, color: Colors.white, size: 28),
                 onPressed: () {
+                  // Use a fade transition for smooth navigation
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => ProfileScreen()),
+                    _fadeRoute(ProfileScreen()),
                   );
                 },
               ),
@@ -53,6 +56,17 @@ class NavBar extends StatelessWidget {
           ],
         ),
       ),
+    );
+  }
+
+  // Custom fade transition route
+  PageRouteBuilder _fadeRoute(Widget page) {
+    return PageRouteBuilder(
+      pageBuilder: (context, animation, secondaryAnimation) => page,
+      transitionsBuilder: (context, animation, secondaryAnimation, child) {
+        // Fade transition
+        return FadeTransition(opacity: animation, child: child);
+      },
     );
   }
 }
