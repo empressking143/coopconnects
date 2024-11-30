@@ -1,13 +1,22 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'screens/kiosk/kiosk_screen.dart';  // Retain KioskScreen import
-import 'providers/kiosk_provider.dart';    // Retain KioskProvider import
-import 'package:coopconnects/screens/profile/profile_screen.dart';  // Retain ProfileScreen import
+import 'screens/menu/menu_screen.dart';
+import 'providers/menu_provider.dart';
+import 'package:coopconnects/providers/notification_provider.dart';
+import 'package:coopconnects/screens/notification/notification_screen.dart';
+import 'package:coopconnects/screens/home/home_screen.dart';
+import 'screens/kiosk/kiosk_screen.dart';
+import 'providers/kiosk_provider.dart';
+import 'package:coopconnects/screens/profile/profile_screen.dart';
 
 void main() {
   runApp(
-    ChangeNotifierProvider(
-      create: (_) => KioskProvider(),  // Retain KioskProvider for KioskScreen
+    MultiProvider(
+      providers: [
+        ChangeNotifierProvider(create: (_) => MenuProvider()),
+        ChangeNotifierProvider(create: (_) => KioskProvider()),
+        ChangeNotifierProvider(create: (_) => NotificationProvider()), // Assuming you want this for notifications
+      ],
       child: MyApp(),
     ),
   );
@@ -18,14 +27,16 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'CoopConnects',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-        visualDensity: VisualDensity.adaptivePlatformDensity,
-      ),
-      home: KioskScreen(),  // Direct to KioskScreen (Main screen)
       debugShowCheckedModeBanner: false,  // Removes the debug banner
+      theme: ThemeData.dark().copyWith(
+        scaffoldBackgroundColor: Color(0xFFFFF8E8),
+      ),
+      home: HomeScreen(),  // Set KioskScreen as the main screen
       routes: {
-        '/profile': (context) => ProfileScreen(),  // Add route for ProfileScreen
+        '/notifications': (context) => NotificationScreen(),
+        '/kiosk': (context) => KioskScreen(),
+        '/profile': (context) => ProfileScreen(),
+        '/home': (context) => HomeScreen(),  // Assuming you want to add HomeScreen route as well
       },
     );
   }

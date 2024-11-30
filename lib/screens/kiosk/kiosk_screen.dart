@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../../models/kiosk_model.dart';
 import '../../providers/kiosk_provider.dart';
+import 'package:coopconnects/widgets/app_bar.dart';
+import 'package:coopconnects/widgets/nav_bar.dart';
 import 'package:coopconnects/screens/menu/menu_screen.dart'; // Import the menu screen
 
 class KioskScreen extends StatefulWidget {
@@ -21,7 +23,7 @@ class _KioskScreenState extends State<KioskScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Color(0xFFFFF8E8), // Set background color
-      appBar: null, // Remove the app bar
+      appBar: AppBarWidget(), // Remove the app bar
       body: Padding(
         padding: const EdgeInsets.symmetric(vertical: 20.0), // Add vertical padding to the body
         child: Column(
@@ -71,7 +73,7 @@ class _KioskScreenState extends State<KioskScreen> {
                               Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                  builder: (context) => MenuScreen(kioskName: 'Kiosk ${index + 1}'), // Passing the kiosk name
+                                  builder: (context) => MenuScreen(), // Navigate directly to MenuScreen
                                 ),
                               );
                             },
@@ -87,6 +89,7 @@ class _KioskScreenState extends State<KioskScreen> {
           ],
         ),
       ),
+      bottomNavigationBar: NavBar(),
     );
   }
 }
