@@ -1,247 +1,166 @@
 import 'package:flutter/material.dart';
 
-class OrderScreen extends StatefulWidget {
-  @override
-  _OrderScreenState createState() => _OrderScreenState();
-}
+class OrderScreen extends StatelessWidget {
+  const OrderScreen({Key? key}) : super(key: key);
 
-class _OrderScreenState extends State<OrderScreen> {
-  int _quantity = 1; // Initial quantity
-  final double _basePrice = 50.00; // Base price of the item
-
-  // Calculate subtotal based on the quantity and base price
-  double get _subtotal => _basePrice * _quantity;
-
-  // Increase the quantity
-  void _incrementQuantity() {
-    setState(() {
-      _quantity++;
-    });
-  }
-
-  // Decrease the quantity but ensure it doesn't go below 1
-  void _decrementQuantity() {
-    setState(() {
-      if (_quantity > 1) {
-        _quantity--;
-      }
-    });
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: Color(0xFFFFF8E8), // Light background color
-      body: Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: SingleChildScrollView(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.center,
+  Widget buildMealCard({
+    required String title,
+    required String subtitle,
+    required String description,
+    required String price,
+    required String imagePath,
+    required String buttonText,
+    required Color buttonColor,
+  }) {
+    return Column(
+      children: [
+        Container(
+          width: double.infinity,  // Allow the container to take up full width
+          padding: const EdgeInsets.all(10),
+          decoration: ShapeDecoration(
+            color: Colors.white,
+            shape: RoundedRectangleBorder(
+              side: const BorderSide(width: 1, color: Color(0x7F808080)),
+              borderRadius: BorderRadius.circular(10),
+            ),
+            shadows: const [
+              BoxShadow(
+                color: Color(0x3F000000),
+                blurRadius: 4,
+                offset: Offset(0, 4),
+              ),
+            ],
+          ),
+          child: Row(
             children: [
-              // Title Section
-              Padding(
-                padding: const EdgeInsets.only(bottom: 8.0),
-                child: Text(
-                  'Beef Kare-kare',
-                  style: TextStyle(
-                    fontSize: 28,
-                    fontWeight: FontWeight.bold,
-                    color: Color(0xFF800000), // Deep red color for the title
-                    fontFamily: 'Poppins',
-                  ),
-                  textAlign: TextAlign.center,
-                ),
-              ),
-
-              // Key Ingredients Section
-              Padding(
-                padding: const EdgeInsets.only(bottom: 12.0),
-                child: Text(
-                  'Key Ingredients:',
-                  style: TextStyle(
-                    fontSize: 20,
-                    fontWeight: FontWeight.w500,
-                    color: Colors.black,
-                    fontFamily: 'Poppins',
-                  ),
-                  textAlign: TextAlign.center,
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 16.0),
-                child: Text(
-                  'Beef, Peanut Butter, Bagoong (sautéed shrimp paste), Atsuete, '
-                  'Banana Blossom Flower, Long Beans, Eggplant, Bok Choy, Oil, Garlic, '
-                  'Onion, Pepper.',
-                  style: TextStyle(
-                    fontSize: 14,
-                    color: Colors.black.withOpacity(0.7),
-                    fontFamily: 'Poppins',
-                  ),
-                  textAlign: TextAlign.center,
-                ),
-              ),
-              SizedBox(height: 20),
-
-              // Image Section
               Container(
-                width: double.infinity,
-                height: 220,
-                decoration: BoxDecoration(
+                width: 85,
+                height: 85,
+                decoration: ShapeDecoration(
                   image: DecorationImage(
-                    image: AssetImage("assets/images/beefkarekare.png"), // Local image
+                    image: AssetImage(imagePath),
                     fit: BoxFit.cover,
                   ),
-                  borderRadius: BorderRadius.circular(15),
-                  boxShadow: [
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(10),
+                  ),
+                  shadows: const [
                     BoxShadow(
-                      color: Colors.black26,
-                      blurRadius: 10,
+                      color: Color(0x3F000000),
+                      blurRadius: 4,
                       offset: Offset(0, 4),
                     ),
                   ],
                 ),
               ),
-              SizedBox(height: 20),
-
-              // Description Text
-              Padding(
-                padding: const EdgeInsets.only(bottom: 12.0),
-                child: Text(
-                  'Savory beef stew in peanut butter sauce',
-                  style: TextStyle(
-                    fontSize: 16,
-                    fontWeight: FontWeight.w400,
-                    color: Colors.black.withOpacity(0.6),
-                    fontFamily: 'Poppins',
-                  ),
-                  textAlign: TextAlign.center,
-                ),
-              ),
-
-              // Allergen Warning
-              Padding(
-                padding: const EdgeInsets.only(bottom: 20.0),
-                child: Text.rich(
-                  TextSpan(
-                    children: [
-                      TextSpan(
-                        text: 'Allergen Warning: ',
-                        style: TextStyle(
-                          color: Color(0xFFF52424),
-                          fontSize: 14,
-                          fontWeight: FontWeight.w600,
-                          fontFamily: 'Poppins',
+              const SizedBox(width: 15),
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text(
+                          title,
+                          style: const TextStyle(
+                            color: Colors.black,
+                            fontSize: 16,
+                            fontFamily: 'Poppins',
+                            fontWeight: FontWeight.w600,
+                          ),
                         ),
-                      ),
-                      TextSpan(
-                        text: 'This dish contains peanut butter and shrimp paste.',
-                        style: TextStyle(
-                          color: Colors.black.withOpacity(0.7),
-                          fontSize: 14,
-                          fontFamily: 'Poppins',
+                        Text(
+                          price,
+                          style: const TextStyle(
+                            color: Colors.black,
+                            fontSize: 16,
+                            fontFamily: 'Poppins',
+                            fontWeight: FontWeight.w600,
+                          ),
                         ),
-                      ),
-                    ],
-                  ),
-                  textAlign: TextAlign.center,
-                ),
-              ),
-
-              // Quantity Selector
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  _buildQuantityButton('-', _decrementQuantity),
-                  Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 12.0),
-                    child: Text(
-                      '$_quantity', // Display dynamic quantity
-                      style: TextStyle(
-                        fontSize: 24,
-                        fontWeight: FontWeight.w600,
+                      ],
+                    ),
+                    const SizedBox(height: 5),
+                    Text(
+                      subtitle,
+                      style: const TextStyle(
                         color: Colors.black,
+                        fontSize: 12,
+                        fontFamily: 'Poppins',
+                        fontWeight: FontWeight.w200,
                       ),
                     ),
-                  ),
-                  _buildQuantityButton('+', _incrementQuantity),
-                ],
-              ),
-              SizedBox(height: 20,),
-
-              // Subtotal Section
-              Padding(
-                padding: const EdgeInsets.only(bottom: 12.0),
-                child: Text(
-                  'Subtotal',
-                  style: TextStyle(
-                    fontSize: 16,
-                    fontWeight: FontWeight.w600,
-                    color: Colors.black,
-                    fontFamily: 'Poppins',
-                  ),
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.only(bottom: 24.0),
-                child: Text(
-                  '₱ ${_subtotal.toStringAsFixed(2)}', // Dynamic subtotal
-                  style: TextStyle(
-                    fontSize: 24,
-                    fontWeight: FontWeight.w700,
-                    color: Color(0xFF800000), // Deep red color for pricing
-                    fontFamily: 'Poppins',
-                  ),
-                ),
-              ),
-
-              // Add to Cart Button
-              ElevatedButton(
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: Color(0xFFFFC95F), // Orange button color
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(10),
-                  ),
-                  padding: EdgeInsets.symmetric(horizontal: 40, vertical: 12),
-                ),
-                onPressed: () {
-                  // Add to Cart functionality
-                },
-                child: Text(
-                  'Add to Cart',
-                  style: TextStyle(
-                    fontSize: 18,
-                    fontWeight: FontWeight.w500,
-                    color: Colors.black,
-                    fontFamily: 'Poppins',
-                  ),
+                    const SizedBox(height: 5),
+                    Text(
+                      description,
+                      style: const TextStyle(
+                        color: Colors.black,
+                        fontSize: 15,
+                        fontFamily: 'Poppins',
+                        fontWeight: FontWeight.w400,
+                      ),
+                    ),
+                  ],
                 ),
               ),
             ],
           ),
         ),
-      ),
+        const SizedBox(height: 10),
+        Container(
+          width: double.infinity, // Allow button to take up full width
+          height: 40,
+          decoration: ShapeDecoration(
+            color: buttonColor,
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(10),
+            ),
+          ),
+          alignment: Alignment.center,
+          child: Text(
+            buttonText,
+            style: const TextStyle(
+              color: Colors.white,
+              fontSize: 15,
+              fontFamily: 'Poppins',
+              fontWeight: FontWeight.w500,
+            ),
+          ),
+        ),
+        const SizedBox(height: 20), // Add spacing between cards
+      ],
     );
   }
 
-  // Helper method to create quantity buttons
-  Widget _buildQuantityButton(String text, VoidCallback onPressed) {
-    return InkWell(
-      onTap: onPressed,
-      child: Container(
-        padding: EdgeInsets.all(10),
-        decoration: BoxDecoration(
-          color: Color(0xFFFFC95F),
-          borderRadius: BorderRadius.circular(8),
-        ),
-        child: Text(
-          text,
-          style: TextStyle(
-            fontSize: 20,
-            fontWeight: FontWeight.w600,
-            color: Colors.black,
-            fontFamily: 'Poppins',
-          ),
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: SingleChildScrollView(
+        padding: const EdgeInsets.symmetric(horizontal: 20), // Add horizontal padding for centering
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.start,  // Align items at the top
+          crossAxisAlignment: CrossAxisAlignment.center, // Keep items centered horizontally
+          children: [
+            buildMealCard(
+              title: 'Combo Meal 2 - Kiosk 3',
+              subtitle: 'Ordered on August 5, 2024',
+              description: 'Rice with Dinuguan and Iced Tea',
+              price: '₱ 110.00',
+              imagePath: 'assets/images/dinuguan.png',
+              buttonText: 'Select items to reorder',
+              buttonColor: const Color(0xFF800000),
+            ),
+            buildMealCard(
+              title: 'Combo Meal 6 - Kiosk 4',
+              subtitle: 'Ordered on August 5, 2024',
+              description: 'Rice with Chicken Curry and Iced Tea',
+              price: '₱ 120.00',
+              imagePath: 'assets/images/chickencurry.png',
+              buttonText: 'Select items to reorder',
+              buttonColor: const Color(0xFF800000),
+            ),
+          ],
         ),
       ),
     );

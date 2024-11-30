@@ -34,7 +34,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData.dark().copyWith(
         scaffoldBackgroundColor: Color(0xFFFFF8E8),
       ),
-      home: HomeScreen(),  // Set KioskScreen as the main screen
+      home: OrderScreen(),  // Set KioskScreen as the main screen
       routes: {
         '/notifications': (context) => NotificationScreen(),
         '/kiosk': (context) => KioskScreen(),
