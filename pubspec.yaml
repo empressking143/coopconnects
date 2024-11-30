@@ -52,6 +52,7 @@ flutter:
     - assets/images/beefkarekare.png
     - assets/images/dinuguan.png
     - assets/images/chickencurry.png
+    - assets/images/qrcode.png
 
                 # Add your image resources here
     # - assets/icons/              # Add your icon resources here
