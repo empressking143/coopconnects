@@ -22,7 +22,7 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      home: KioskScreen(),  // Direct to KioskScreen (Main screen)
+      home: ProfileScreen(),  // Direct to KioskScreen (Main screen)
       debugShowCheckedModeBanner: false,  // Removes the debug banner
       routes: {
         '/profile': (context) => ProfileScreen(),  // Add route for ProfileScreen

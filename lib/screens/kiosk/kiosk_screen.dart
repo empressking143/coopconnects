@@ -71,7 +71,7 @@ class _KioskScreenState extends State<KioskScreen> {
                               Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                  builder: (context) => MenuScreen(kioskName: 'Kiosk ${index + 1}'), // Passing the kiosk name
+                                  builder: (context) => MenuScreen(), // No kioskName passed
                                 ),
                               );
                             },
