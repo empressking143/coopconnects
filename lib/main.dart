@@ -1,5 +1,6 @@
+import 'package:coopconnects/screens/cart/cart_screen.dart';
 import 'package:flutter/material.dart';
-import 'screens/home/home_screen.dart';
+import 'screens/cart/cart_screen.dart';
 
 void main() {
   runApp(const CoopConnects());
@@ -14,7 +15,7 @@ class CoopConnects extends StatelessWidget {
       theme: ThemeData.dark().copyWith(
         scaffoldBackgroundColor: Color(0xFFFFF8E8),
       ),
-      home: HomeScreen(), // Set HomeScreen as the first screen
+      home: CartScreen(), // Set HomeScreen as the first screen
     );
   }
 }
