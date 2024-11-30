@@ -1,21 +1,32 @@
-import 'package:coopconnects/screens/profile/profile_screen.dart';
 import 'package:flutter/material.dart';
-import 'screens/profile/profile_screen.dart';
+import 'package:provider/provider.dart';
+import 'screens/kiosk/kiosk_screen.dart';  // Retain KioskScreen import
+import 'providers/kiosk_provider.dart';    // Retain KioskProvider import
+import 'package:coopconnects/screens/profile/profile_screen.dart';  // Retain ProfileScreen import
 
 void main() {
-  runApp(const CoopConnects());
+  runApp(
+    ChangeNotifierProvider(
+      create: (_) => KioskProvider(),  // Retain KioskProvider for KioskScreen
+      child: MyApp(),
+    ),
+  );
 }
 
-class CoopConnects extends StatelessWidget {
-  const CoopConnects({super.key});
-
+class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      theme: ThemeData.dark().copyWith(
-        scaffoldBackgroundColor: Color(0xFFFFF8E8),
+      title: 'CoopConnects',
+      theme: ThemeData(
+        primarySwatch: Colors.blue,
+        visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      home: ProfileScreen(), // Set HomeScreen as the first screen
+      home: KioskScreen(),  // Direct to KioskScreen (Main screen)
+      debugShowCheckedModeBanner: false,  // Removes the debug banner
+      routes: {
+        '/profile': (context) => ProfileScreen(),  // Add route for ProfileScreen
+      },
     );
   }
 }
