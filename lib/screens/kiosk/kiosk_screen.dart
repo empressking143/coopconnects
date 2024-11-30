@@ -1,8 +1,8 @@
-// screens/kiosk/kiosk_screen.dart
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../../models/kiosk_model.dart';
 import '../../providers/kiosk_provider.dart';
+import 'package:coopconnects/screens/menu/menu_screen.dart'; // Import the menu screen
 
 class KioskScreen extends StatefulWidget {
   @override
@@ -21,52 +21,71 @@ class _KioskScreenState extends State<KioskScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Color(0xFFFFF8E8), // Set background color
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.center, // Center the column's children
-        crossAxisAlignment: CrossAxisAlignment.center, // Center the column's children horizontally
-        children: [
-          SizedBox(
-            width: 90,
-            height: 30,
-            child: Text(
-              'KIOSK',
-              textAlign: TextAlign.center,
-              style: TextStyle(
-                color: Color(0xFF800000),
-                fontSize: 24,
-                fontFamily: 'Poppins',
-                fontWeight: FontWeight.w600,
-                height: 0,
+      appBar: null, // Remove the app bar
+      body: Padding(
+        padding: const EdgeInsets.symmetric(vertical: 20.0), // Add vertical padding to the body
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.start, // Align the column's children at the start
+          crossAxisAlignment: CrossAxisAlignment.center, // Center the column's children horizontally
+          children: [
+            SizedBox(
+              width: 90,
+              height: 30,
+              child: Text(
+                'KIOSK',
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                  color: Color(0xFF800000),
+                  fontSize: 24,
+                  fontFamily: 'Poppins',
+                  fontWeight: FontWeight.w600,
+                  height: 0,
+                ),
               ),
             ),
-          ),
-          SizedBox(height: 20), // Add some spacing between the text and the grid
-          Expanded(
-            child: Consumer<KioskProvider>(
-              builder: (context, kioskProvider, child) {
-                return Center(
-                  child: Container(
-                    width: 371,
-                    height: 624,
-                    child: GridView.builder(
-                      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                        crossAxisCount: 2, // 2 columns
-                        crossAxisSpacing: 10,
-                        mainAxisSpacing: 10,
-                        childAspectRatio: 170 / 185,
+            SizedBox(height: 20), // Add some spacing between the text and the grid
+            Expanded(
+              child: Consumer<KioskProvider>(
+                builder: (context, kioskProvider, child) {
+                  if (kioskProvider.isLoading) {
+                    return Center(child: CircularProgressIndicator());
+                  }
+
+                  return Center(
+                    child: Container(
+                      width: 371,
+                      height: 624,
+                      child: GridView.builder(
+                        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                          crossAxisCount: 2, // 2 columns
+                          crossAxisSpacing: 10,
+                          mainAxisSpacing: 10,
+                          childAspectRatio: 170 / 185,
+                        ),
+                        itemCount: kioskProvider.kiosks.length,
+                        itemBuilder: (context, index) {
+                          Kiosk kiosk = kioskProvider.kiosks[index];
+                          return GestureDetector(
+                            onTap: () {
+                              // Navigate to the menu screen when a kiosk is tapped
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => MenuScreen(kioskName: 'Kiosk ${index + 1}'), // Passing the kiosk name
+                                ),
+                              );
+                            },
+                            child: KioskCard(kioskName: 'Kiosk ${index + 1}'),
+                          );
+                        },
                       ),
-                      itemCount: kioskProvider.kiosks.length,
-                      itemBuilder: (context, index) {
-                        Kiosk kiosk = kioskProvider.kiosks[index];
-                        return KioskCard(kioskName: kiosk.name);
-                      },
                     ),
-                  ),
-                );
-              },
+                  );
+                },
+              ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }

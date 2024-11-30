@@ -1,23 +1,28 @@
-// providers/kiosk_provider.dart
 import 'package:flutter/material.dart';
-import '../models/kiosk_model.dart';
-import '../services/kiosk_service.dart';
+import 'package:coopconnects/models/kiosk_model.dart';
+import 'package:coopconnects/services/kiosk_service.dart';
 
 class KioskProvider with ChangeNotifier {
-  final KioskService _kioskService = KioskService();
   List<Kiosk> _kiosks = [];
+  bool _isLoading = false;
 
   List<Kiosk> get kiosks => _kiosks;
+  bool get isLoading => _isLoading;
 
-  // Fetch all kiosks
-  void fetchKiosks() {
-    _kiosks = _kioskService.getKiosks();
-    notifyListeners();
-  }
+  final KioskService _kioskService = KioskService();
 
-  // Search for available kiosks
-  void searchAvailableKiosks() {
-    _kiosks = _kioskService.searchKiosks(isAvailable: true);
+  // Fetch kiosks data
+  Future<void> fetchKiosks() async {
+    _isLoading = true;
     notifyListeners();
+
+    try {
+      _kiosks = await _kioskService.fetchKiosks();
+    } catch (error) {
+      throw error; // Handle error appropriately
+    } finally {
+      _isLoading = false;
+      notifyListeners();
+    }
   }
 }

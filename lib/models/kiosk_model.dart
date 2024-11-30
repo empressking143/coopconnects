@@ -1,8 +1,19 @@
-// models/kiosk_model.dart
 class Kiosk {
-  final String name;
   final String id;
-  final bool isAvailable;
+  final String name;
+  final String location; // Example additional field
 
-  Kiosk({required this.name, required this.id, required this.isAvailable});
+  Kiosk({
+    required this.id,
+    required this.name,
+    required this.location,
+  });
+
+  factory Kiosk.fromJson(Map<String, dynamic> json) {
+    return Kiosk(
+      id: json['id'] ?? '',
+      name: json['name'] ?? '',
+      location: json['location'] ?? '',
+    );
+  }
 }
