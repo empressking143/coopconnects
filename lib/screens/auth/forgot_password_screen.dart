@@ -1,33 +1,22 @@
 import 'package:flutter/material.dart';
-import 'package:coopconnects/services/auth_service.dart';
 
-class ForgotPasswordScreen extends StatefulWidget {
-  @override
-  _ForgotPasswordScreenState createState() => _ForgotPasswordScreenState();
-}
-
-class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
-  final _emailController = TextEditingController();
+class ForgotPasswordScreen extends StatelessWidget {
+  final TextEditingController emailController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text('Forgot Password')),
-      body: Padding(
-        padding: EdgeInsets.all(16.0),
+      body: Container(
+        decoration: BoxDecoration(color: Color(0xFF800000)),
         child: Column(
           children: [
             TextField(
-              controller: _emailController,
-              decoration: InputDecoration(labelText: 'Enter your email'),
+              controller: emailController,
+              decoration: InputDecoration(labelText: 'Email'),
             ),
-            SizedBox(height: 20),
             ElevatedButton(
-              onPressed: () async {
-                await AuthService().resetPassword(_emailController.text);
-                ScaffoldMessenger.of(context).showSnackBar(
-                  SnackBar(content: Text('Password reset link sent!')),
-                );
+              onPressed: () {
+                // Implement reset password here
               },
               child: Text('Reset Password'),
             ),
