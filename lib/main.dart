@@ -1,32 +1,19 @@
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
-import 'package:firebase_core/firebase_core.dart';
-import 'providers/auth_provider.dart';
-import 'screens/auth/splash_screen.dart'; // Import your custom splash screen
-
-void main() async {
-  WidgetsFlutterBinding.ensureInitialized();
-  // Initialize Firebase
-  await Firebase.initializeApp();
-
-  runApp(
-    ChangeNotifierProvider(
-      create: (context) => AuthProvider(),
-      child: MyApp(),
-    ),
-  );
+import 'routes.dart'; // Import your route file
+void main() {
+  runApp(const FigmaToCodeApp());
 }
 
-class MyApp extends StatelessWidget {
+class FigmaToCodeApp extends StatelessWidget {
+  const FigmaToCodeApp({super.key});
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'CoopConnects',
-      theme: ThemeData(
-        primarySwatch: Colors.red,
-        visualDensity: VisualDensity.adaptivePlatformDensity,
+      theme: ThemeData.dark().copyWith(
+        scaffoldBackgroundColor: Color(0xFFFFF8E8),
       ),
-      home: SplashScreen(), // Set SplashScreen as the first screen
+      home: HomeScreen(), // Set HomeScreen as the first screen
     );
   }
 }
