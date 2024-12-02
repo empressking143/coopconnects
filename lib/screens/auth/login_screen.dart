@@ -6,6 +6,7 @@ import '../../providers/auth_provider.dart';
 import '../../widgets/auth_button.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:flutter/gestures.dart'; // Import for TapGestureRecognizer
+import 'package:coopconnects/screens/home/home_screen.dart';
 
 class GradientIcon extends StatelessWidget {
   final IconData icon;
@@ -96,11 +97,23 @@ class LoginScreen extends StatelessWidget {
                     // Email Log-In Button
                     AuthButton(
                       text: 'Log In',
-                      onPressed: () {
-                        authProvider.signUpWithEmail(
+                      onPressed: () async {
+                        bool success = await authProvider.signInWithEmail(
                           _emailController.text,
                           _passwordController.text,
                         );
+                        if (success) {
+                          // Navigate to Home Screen if login is successful
+                          Navigator.pushReplacement(
+                            context,
+                            MaterialPageRoute(builder: (context) => HomeScreen()),
+                          );
+                        } else {
+                          // Show an error message (optional)
+                          ScaffoldMessenger.of(context).showSnackBar(
+                            SnackBar(content: Text('Login failed. Please try again.')),
+                          );
+                        }
                       },
                     ),
                     const SizedBox(height: 20),
@@ -193,8 +206,18 @@ class LoginScreen extends StatelessWidget {
                       'Continue with Google     ',
                       style: TextStyle(color: Colors.black),
                     ),
-                    onPressed: () {
-                      authProvider.signUpWithGoogle();
+                    onPressed: () async {
+                      bool success = await authProvider.signUpWithGoogle();
+                      if (success) {
+                        Navigator.pushReplacement(
+                          context,
+                          MaterialPageRoute(builder: (context) => HomeScreen()),
+                        );
+                      } else {
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          SnackBar(content: Text('Google login failed. Please try again.')),
+                        );
+                      }
                     },
                     style: ElevatedButton.styleFrom(
                       backgroundColor: Color(0xFFFFFFFF), // Google Blue
@@ -218,8 +241,18 @@ class LoginScreen extends StatelessWidget {
                       'Continue with Facebook',
                       style: TextStyle(color: Colors.white),
                     ),
-                    onPressed: () {
-                      authProvider.signUpWithFacebook();
+                    onPressed: () async {
+                      bool success = await authProvider.signUpWithFacebook();
+                      if (success) {
+                        Navigator.pushReplacement(
+                          context,
+                          MaterialPageRoute(builder: (context) => HomeScreen()),
+                        );
+                      } else {
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          SnackBar(content: Text('Facebook login failed. Please try again.')),
+                        );
+                      }
                     },
                     style: ElevatedButton.styleFrom(
                       backgroundColor: Color(0xFF1877F2), // Facebook Blue
