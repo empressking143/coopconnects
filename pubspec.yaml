@@ -9,6 +9,8 @@ dependencies:
   flutter:
     sdk: flutter
 
+  font_awesome_flutter: ^10.8.0
+
   # Firebase dependencies
   firebase_core: ^3.8.0            # Firebase setup
   firebase_auth: ^5.3.3            # For authentication
@@ -60,6 +62,15 @@ flutter:
     - family: NotoSans
       fonts:
         - asset: assets/fonts/Noto_Sans/NotoSans-VariableFont_wdth,wght.ttf
+   uses-material-design: true
+   assets:
+     - assets/images/logo.png            # Add your image resources here
+#     - assets/icons/              # Add your icon resources here
+#   fonts:
+#     - family: Roboto
+#       fonts:
+#         - asset: assets/fonts/Roboto-Regular.ttf
+#         - asset: assets/fonts/Roboto-Bold.ttf
 
 # SDK version constraint
 environment:
