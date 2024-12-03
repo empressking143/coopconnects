@@ -4,6 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:coopconnects/providers/notification_provider.dart';
 import 'package:coopconnects/widgets/notification_widget.dart';
 import 'package:provider/provider.dart';
+import 'package:coopconnects/widgets/app_bar.dart'; // Import the custom AppBar
+import 'package:coopconnects/widgets/nav_bar.dart'; 
 
 class NotificationScreen extends StatelessWidget {
   @override
@@ -13,6 +15,7 @@ class NotificationScreen extends StatelessWidget {
     provider.loadNotifications();
 
     return Scaffold(
+      appBar: AppBarWidget(),
       backgroundColor: Color(0xFFFFF8E8),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
@@ -41,6 +44,7 @@ class NotificationScreen extends StatelessWidget {
           ],
         ),
       ),
+      bottomNavigationBar: NavBar(),
     );
   }
 }

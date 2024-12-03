@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:coopconnects/widgets/app_bar.dart';
+import 'package:coopconnects/widgets/nav_bar.dart';
 // import 'order_confirmation_screen.dart';
 
 class CartScreen extends StatefulWidget {
@@ -12,6 +14,7 @@ class _CartScreenState extends State<CartScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBarWidget(),
       backgroundColor: Color(0xFFFFF7E8),
       body: Padding(
         padding: const EdgeInsets.all(10.0),
@@ -84,6 +87,7 @@ class _CartScreenState extends State<CartScreen> {
           ],
         ),
       ),
+      bottomNavigationBar: NavBar(),
     );
   }
 }

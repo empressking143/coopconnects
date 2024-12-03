@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import '/screens/cart/cart_screen.dart';
+import '/screens/notification/notification_screen.dart';
 
 class AppBarWidget extends StatelessWidget implements PreferredSizeWidget {
   @override
@@ -34,7 +36,7 @@ class AppBarWidget extends StatelessWidget implements PreferredSizeWidget {
           padding: const EdgeInsets.symmetric(horizontal: 10.0), // Adjust horizontal padding
           child: Row(
             children: [
-              Icon(Icons.search, color: Colors.grey[600], size: 22), // Slightly larger search icon for better visibility
+              Icon(Icons.search, color: Colors.grey[600], size: 24), // Slightly larger search icon for better visibility
               SizedBox(width: 10), // Space between the icon and the text field
               Expanded(
                 child: TextField(
@@ -44,7 +46,7 @@ class AppBarWidget extends StatelessWidget implements PreferredSizeWidget {
                     hintText: 'Search...',
                     hintStyle: TextStyle(color: Colors.grey[600], fontSize: 16), // Slightly larger hint text for clarity
                     border: InputBorder.none,
-                    contentPadding: EdgeInsets.symmetric(vertical: 10.0), // Adjust vertical padding inside the TextField
+                    contentPadding: EdgeInsets.symmetric(vertical: 13), // Adjust vertical padding inside the TextField
                   ),
                 ),
               ),
@@ -55,16 +57,25 @@ class AppBarWidget extends StatelessWidget implements PreferredSizeWidget {
       actions: [
         // Cart icon with a bit of space between them for better accessibility
         IconButton(
-          icon: FaIcon(FontAwesomeIcons.cartShopping, color: Colors.white,),
+          icon: FaIcon(FontAwesomeIcons.cartShopping, color: Colors.white),
           onPressed: () {
-            // Define cart functionality, navigate to the cart page or perform action
+            // Navigate to CartScreen
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => CartScreen()),
+            );
           },
         ),
+
         SizedBox(width: 10), // Space between cart and bell icons
         // Bell icon with enhanced visibility
         IconButton(
           icon: FaIcon(FontAwesomeIcons.solidBell, color: Colors.white),
           onPressed: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => NotificationScreen()),
+            );
             // Define notification functionality, navigate to the notifications page or perform action
           },
         ),

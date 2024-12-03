@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class AppBarWidget2 extends StatelessWidget implements PreferredSizeWidget {
   @override
@@ -23,7 +24,8 @@ class AppBarWidget2 extends StatelessWidget implements PreferredSizeWidget {
             child: Text(
               'Account Info',
               style: TextStyle(
-                fontSize: 18, // Adjust font size as needed
+                fontSize: 20, // Adjust font size as needed
+                fontWeight: FontWeight.bold,
                 color: Colors.white,
               ),
             ),
@@ -32,7 +34,7 @@ class AppBarWidget2 extends StatelessWidget implements PreferredSizeWidget {
           Padding(
             padding: const EdgeInsets.only(right: 16.0),
             child: IconButton(
-              icon: Icon(Icons.notifications, color: Colors.white, size: 26),
+              icon: FaIcon(FontAwesomeIcons.solidBell, color: Colors.white),
               onPressed: () {
                 // Define notification functionality, navigate to notifications page or perform action
               },

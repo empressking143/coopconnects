@@ -33,7 +33,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData.dark().copyWith(
         scaffoldBackgroundColor: Color(0xFFFFF8E8),
       ),
-      home: OrderCode(),  // Set OrderCode as the main screen
+      home: HomeScreen(),  // Set OrderCode as the main screen
       routes: {
         '/notifications': (context) => NotificationScreen(),
         '/kiosk': (context) => KioskScreen(),
