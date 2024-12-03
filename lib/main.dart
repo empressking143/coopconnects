@@ -1,6 +1,6 @@
-import 'package:coopconnects/screens/order/order_screen.dart';
+import 'package:coopconnects/screens/order/order_code.dart'; // Update import
 import 'package:flutter/material.dart';
-import 'screens/order/order_screen.dart';
+import 'screens/order/order_code.dart'; // Update import
 import 'package:provider/provider.dart';
 import 'screens/menu/menu_screen.dart';
 import 'providers/menu_provider.dart';
@@ -10,7 +10,6 @@ import 'package:coopconnects/screens/home/home_screen.dart';
 import 'screens/kiosk/kiosk_screen.dart';
 import 'providers/kiosk_provider.dart';
 import 'package:coopconnects/screens/profile/profile_screen.dart';
-
 
 void main() {
   runApp(
@@ -34,7 +33,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData.dark().copyWith(
         scaffoldBackgroundColor: Color(0xFFFFF8E8),
       ),
-      home: HomeScreen(),  // Set KioskScreen as the main screen
+      home: OrderCode(),  // Set OrderCode as the main screen
       routes: {
         '/notifications': (context) => NotificationScreen(),
         '/kiosk': (context) => KioskScreen(),
