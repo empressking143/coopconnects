@@ -1,8 +1,8 @@
+import 'package:coopconnects/screens/profile/contact_support.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'screens/kiosk/kiosk_screen.dart';  // Retain KioskScreen import
 import 'providers/kiosk_provider.dart';    // Retain KioskProvider import
-import 'package:coopconnects/screens/profile/profile_screen.dart';  // Retain ProfileScreen import
 
 void main() {
   runApp(
@@ -22,10 +22,10 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      home: ProfileScreen(),  // Direct to KioskScreen (Main screen)
+      home: ContactSupport(),  // Change home to ContactSupport
       debugShowCheckedModeBanner: false,  // Removes the debug banner
       routes: {
-        '/profile': (context) => ProfileScreen(),  // Add route for ProfileScreen
+        '/contact-support': (context) => ContactSupport(),  // Add route for ContactSupport
       },
     );
   }
