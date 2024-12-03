@@ -1,6 +1,12 @@
 import 'package:coopconnects/widgets/nav_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:coopconnects/widgets/app_bar2.dart';
+import 'SupportRequests_screen.dart';
+import 'contact_support.dart';
+import 'favorites_screen.dart';
+import 'foodpreferences_screen.dart';
+import 'settings_screen.dart';
+import 'helpcenter_screen.dart';
 
 class ProfileScreen extends StatelessWidget {
   @override
