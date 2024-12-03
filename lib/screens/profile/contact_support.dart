@@ -6,7 +6,7 @@ class ContactSupport extends StatelessWidget {
     return Scaffold(
       backgroundColor: Color(0xFFFFF8E8), // Set background color here
       body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 20.0), // Symmetrical padding for consistent spacing
+        padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 20.0), // Symmetrical padding
         child: Column(
           children: [
             // Upper contact form section
@@ -113,26 +113,32 @@ class ContactSupport extends StatelessWidget {
                     ),
                   ),
                   SizedBox(height: 16),
-                  Container(
-                    width: 115,
-                    height: 35,
-                    decoration: ShapeDecoration(
-                      color: Color(0xFF800000),
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(10),
-                      ),
-                    ),
-                    child: Center(
-                      child: Text(
-                        'Send Message',
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 12,
-                          fontFamily: 'Poppins',
-                          fontWeight: FontWeight.w400,
+                  // Centered "Send Message" button
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Container(
+                        width: 115,
+                        height: 35,
+                        decoration: ShapeDecoration(
+                          color: Color(0xFF800000),
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(10),
+                          ),
+                        ),
+                        child: Center(
+                          child: Text(
+                            'Send Message',
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 12,
+                              fontFamily: 'Poppins',
+                              fontWeight: FontWeight.w400,
+                            ),
+                          ),
                         ),
                       ),
-                    ),
+                    ],
                   ),
                 ],
               ),
