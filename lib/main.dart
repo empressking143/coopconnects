@@ -1,8 +1,8 @@
-import 'package:coopconnects/screens/profile/contact_support.dart';
+import 'package:coopconnects/screens/profile/get_help_order.dart'; // Import GetHelpOrder screen
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'screens/kiosk/kiosk_screen.dart';  // Retain KioskScreen import
-import 'providers/kiosk_provider.dart';    // Retain KioskProvider import
+import 'screens/kiosk/kiosk_screen.dart'; // Retain KioskScreen import
+import 'providers/kiosk_provider.dart';  // Retain KioskProvider import
 
 void main() {
   runApp(
@@ -22,10 +22,10 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      home: ContactSupport(),  // Change home to ContactSupport
+      home: GetHelpOrder(),  // Change home to GetHelpOrder
       debugShowCheckedModeBanner: false,  // Removes the debug banner
       routes: {
-        '/contact-support': (context) => ContactSupport(),  // Add route for ContactSupport
+        '/get-help-order': (context) => GetHelpOrder(),  // Add route for GetHelpOrder
       },
     );
   }
