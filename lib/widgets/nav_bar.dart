@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:coopconnects/screens/home/home_screen.dart';
 import 'package:coopconnects/screens/profile/profile_screen.dart';
 import 'package:coopconnects/screens/kiosk/kiosk_screen.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class NavBar extends StatelessWidget {
   @override
@@ -17,7 +18,7 @@ class NavBar extends StatelessWidget {
             // Menu Button
             Expanded(
               child: IconButton(
-                icon: Icon(Icons.menu, color: Colors.white, size: 28),
+                icon: FaIcon(FontAwesomeIcons.bowlFood, color: Colors.white,),
                 onPressed: () {
                   // Use a fade transition for smooth navigation
                   Navigator.push(
@@ -30,7 +31,7 @@ class NavBar extends StatelessWidget {
             // Home Button
             Expanded(
               child: IconButton(
-                icon: Icon(Icons.home, color: Colors.white, size: 28),
+                icon: FaIcon(FontAwesomeIcons.house, color: Colors.white,),
                 onPressed: () {
                   // Use a fade transition for smooth navigation
                   Navigator.push(
@@ -43,7 +44,7 @@ class NavBar extends StatelessWidget {
             // Profile Button
             Expanded(
               child: IconButton(
-                icon: Icon(Icons.person, color: Colors.white, size: 28),
+                icon: FaIcon(FontAwesomeIcons.solidUser, color: Colors.white,),
                 onPressed: () {
                   // Use a fade transition for smooth navigation
                   Navigator.push(

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class AppBarWidget extends StatelessWidget implements PreferredSizeWidget {
   @override
@@ -54,7 +55,7 @@ class AppBarWidget extends StatelessWidget implements PreferredSizeWidget {
       actions: [
         // Cart icon with a bit of space between them for better accessibility
         IconButton(
-          icon: Icon(Icons.shopping_cart, color: Colors.white, size: 26), // Larger icon for better visibility
+          icon: FaIcon(FontAwesomeIcons.cartShopping, color: Colors.white,),
           onPressed: () {
             // Define cart functionality, navigate to the cart page or perform action
           },
@@ -62,7 +63,7 @@ class AppBarWidget extends StatelessWidget implements PreferredSizeWidget {
         SizedBox(width: 10), // Space between cart and bell icons
         // Bell icon with enhanced visibility
         IconButton(
-          icon: Icon(Icons.notifications, color: Colors.white, size: 26), // Larger icon for better visibility
+          icon: FaIcon(FontAwesomeIcons.solidBell, color: Colors.white),
           onPressed: () {
             // Define notification functionality, navigate to the notifications page or perform action
           },
