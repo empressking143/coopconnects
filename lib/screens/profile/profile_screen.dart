@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'foodpreferences_screen.dart'; // Import the Food Preferences screen
 import 'favorites_screen.dart'; // Import the Favorites screen
+import 'settings_screen.dart'; // Import the Settings screen
+import 'helpcenter_screen.dart'; // Import the HelpCenterScreen
 
 class ProfileScreen extends StatelessWidget {
   @override
@@ -65,8 +67,22 @@ class ProfileScreen extends StatelessWidget {
                 );
               }),
               SizedBox(height: 10),
+              // Settings option
+              _buildMenuOption(Icons.settings, 'Settings', () {
+                // Navigate to Settings Screen
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => SettingsScreen()),
+                );
+              }),
+              SizedBox(height: 10),
+              // Help Center option
               _buildMenuOption(Icons.help_center, 'Help Center', () {
-                print('Help Center button clicked!');
+                // Navigate to HelpCenterScreen when clicked
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => HelpCenterScreen()),
+                );
               }),
               SizedBox(height: 10),
               _buildMenuOption(Icons.support, 'Contact Support', () {
