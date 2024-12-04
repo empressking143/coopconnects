@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "869358196540",
+    "firebase_url": "https://coopconnects-default-rtdb.asia-southeast1.firebasedatabase.app",
+    "project_id": "coopconnects",
+    "storage_bucket": "coopconnects.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:869358196540:android:b82147b88c63e5f3d7b039",
+        "android_client_info": {
+          "package_name": "com.project.coopconnects"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "869358196540-2krhi1ulo6v1psgkr7pftpktaub1a3pj.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.project.coopconnects",
+            "certificate_hash": "87ee30b4d7247f1e1d4fb0c2e4f1d6788150a7bc"
+          }
+        },
+        {
+          "client_id": "869358196540-4pa61icmil2deqhjoogshulj1g0fs94g.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCzefw7HWajYttJOn_JZ9eWGMHb2LoJagM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "869358196540-4pa61icmil2deqhjoogshulj1g0fs94g.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "869358196540-948sqci8kt17v7mhmrlc1ejq6t7grlrv.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.project.coopconnects.coopconnects"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
