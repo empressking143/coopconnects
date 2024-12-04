@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:lottie/lottie.dart';
 import 'package:coopconnects/widgets/app_bar.dart'; // Import the custom AppBar
 import 'package:coopconnects/widgets/nav_bar.dart'; // Import the custom NavBar
 
@@ -7,12 +8,14 @@ class HomeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBarWidget(), // Use the custom AppBar
-      body: Padding(
+      backgroundColor: Color(0xFFFFF8E8),
+      resizeToAvoidBottomInset: true, // Prevent overflow when keyboard appears
+      body: SingleChildScrollView(
         padding: const EdgeInsets.all(20.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            // Row 1: "Hot Deals" on the left and Advertisement below
+            // Row 1: "Hot Deals" with Fire Animation
             Row(
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
@@ -23,6 +26,12 @@ class HomeScreen extends StatelessWidget {
                     fontWeight: FontWeight.bold,
                     color: Colors.black,
                   ),
+                ),
+                SizedBox(width: 8), // Space between text and animation
+                Lottie.asset(
+                  'assets/animations/fire.json',
+                  width: 40,
+                  height: 40,
                 ),
               ],
             ),

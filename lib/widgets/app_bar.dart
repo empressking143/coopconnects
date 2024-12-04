@@ -46,7 +46,7 @@ class AppBarWidget extends StatelessWidget implements PreferredSizeWidget {
                     hintText: 'Search...',
                     hintStyle: TextStyle(color: Colors.grey[600], fontSize: 16), // Slightly larger hint text for clarity
                     border: InputBorder.none,
-                    contentPadding: EdgeInsets.symmetric(vertical: 13), // Adjust vertical padding inside the TextField
+                    contentPadding: EdgeInsets.symmetric(vertical: 10), // Adjust vertical padding inside the TextField
                   ),
                 ),
               ),

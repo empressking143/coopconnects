@@ -1,5 +1,3 @@
-// lib/providers/notification_provider.dart
-
 import 'package:flutter/material.dart';
 import 'package:coopconnects/services/notification_service.dart';
 import 'package:coopconnects/models/notification_model.dart';

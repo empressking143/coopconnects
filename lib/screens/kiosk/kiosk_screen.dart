@@ -15,8 +15,10 @@ class _KioskScreenState extends State<KioskScreen> {
   @override
   void initState() {
     super.initState();
-    // Fetch kiosks when the screen is initialized
-    Provider.of<KioskProvider>(context, listen: false).fetchKiosks();
+    // Schedule fetching kiosks after the widget is fully built
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      Provider.of<KioskProvider>(context, listen: false).fetchKiosks();
+    });
   }
 
   @override
@@ -49,9 +51,7 @@ class _KioskScreenState extends State<KioskScreen> {
             Expanded(
               child: Consumer<KioskProvider>(
                 builder: (context, kioskProvider, child) {
-                  if (kioskProvider.isLoading) {
-                    return Center(child: CircularProgressIndicator());
-                  }
+                  
 
                   return Center(
                     child: Container(
