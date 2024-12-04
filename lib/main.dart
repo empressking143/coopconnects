@@ -1,13 +1,17 @@
-import 'package:coopconnects/screens/profile/get_help_order.dart'; // Import GetHelpOrder screen
+import 'package:coopconnects/screens/profile/CantSignup_Screen.dart';
+import 'package:coopconnects/screens/profile/GetHelpWithOrders_screen.dart';
+import 'package:coopconnects/screens/profile/NumberRegistered_screen.dart';
+import 'package:coopconnects/screens/profile/OtherLoginIssue_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'screens/kiosk/kiosk_screen.dart'; // Retain KioskScreen import
 import 'providers/kiosk_provider.dart';  // Retain KioskProvider import
+import 'screens/profile/profile_screen.dart'; // Ensure ProfileScreen is imported
 
 void main() {
   runApp(
     ChangeNotifierProvider(
-      create: (_) => KioskProvider(),  // Retain KioskProvider for KioskScreen
+      create: (_) => KioskProvider(), // Keep the KioskProvider setup
       child: MyApp(),
     ),
   );
@@ -22,11 +26,8 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      home: GetHelpOrder(),  // Change home to GetHelpOrder
-      debugShowCheckedModeBanner: false,  // Removes the debug banner
-      routes: {
-        '/get-help-order': (context) => GetHelpOrder(),  // Add route for GetHelpOrder
-      },
+      home: OtherLoginIssueScreen(), // Set ProfileScreen as the main screen
+      debugShowCheckedModeBanner: false,
     );
   }
 }
