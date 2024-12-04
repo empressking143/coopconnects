@@ -1,3 +1,4 @@
+import 'package:firebase_core/firebase_core.dart'; // Add this import
 import 'package:coopconnects/screens/order/order_code.dart'; // Update import
 import 'package:flutter/material.dart';
 import 'screens/order/order_code.dart'; // Update import
@@ -11,7 +12,9 @@ import 'screens/kiosk/kiosk_screen.dart';
 import 'providers/kiosk_provider.dart';
 import 'package:coopconnects/screens/profile/profile_screen.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();  // Ensures widgets are initialized
+  await Firebase.initializeApp();  // Initializes Firebase
   runApp(
     MultiProvider(
       providers: [
@@ -24,22 +27,16 @@ void main() {
   );
 }
 
-class MyApp extends StatelessWidget {
+class MyApp extends StatelessWidget { 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'CoopConnects',
-      debugShowCheckedModeBanner: false,  // Removes the debug banner
+      debugShowCheckedModeBanner: false,
       theme: ThemeData.dark().copyWith(
         scaffoldBackgroundColor: Color(0xFFFFF8E8),
       ),
-      home: HomeScreen(),  // Set OrderCode as the main screen
-      routes: {
-        '/notifications': (context) => NotificationScreen(),
-        '/kiosk': (context) => KioskScreen(),
-        '/profile': (context) => ProfileScreen(),
-        '/home': (context) => HomeScreen(),  // Assuming you want to add HomeScreen route as well
-      },
+      home: MenuScreen(),  // HomeScreen is the start screen
     );
   }
 }

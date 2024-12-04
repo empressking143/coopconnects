@@ -5,7 +5,7 @@ import 'screens/auth/forgot_password_screen.dart';
 import 'screens/home/home_screen.dart';
 import 'screens/home/kiosk_search_screen.dart';
 import 'screens/menu/menu_screen.dart';
-import 'screens/menu/menu_filter_screen.dart';
+import 'screens/menu/menu_detail_screen.dart';
 import 'screens/order/order_screen.dart';
 import 'screens/order/order_code.dart';
 import 'screens/order/order_confirmation_screen.dart';
