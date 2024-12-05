@@ -12,94 +12,60 @@ class SupportRequestsScreen extends StatelessWidget {
             Navigator.pop(context);
           },
         ),
-        titleSpacing: 0,
         title: Text(
-          'Support Requests',
+          'My support requests',
           style: TextStyle(
             color: Colors.white,
-            fontSize: 24,
+            fontSize: 20,
             fontFamily: 'Poppins',
-            fontWeight: FontWeight.w700,
+            fontWeight: FontWeight.w600,
           ),
         ),
         backgroundColor: Color(0xFF800000),
+        titleSpacing: 0, 
+        elevation: 0,
       ),
-      body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
+      body: Center( 
         child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            SizedBox(
-              width: 340,
-              height: 33,
-              child: Text(
-                'My support requests',
-                textAlign: TextAlign.center,
-                style: TextStyle(
-                  color: Colors.white,
-                  fontSize: 25,
-                  fontFamily: 'Poppins',
-                  fontWeight: FontWeight.w700,
-                  height: 0,
+            Container(
+              width: 150,
+              height: 150,
+              decoration: BoxDecoration(
+                color: Color(0xFFFDEFD0),
+                shape: BoxShape.circle,
+              ),
+              child: Center(
+                child: Icon(
+                  Icons.email_outlined,
+                  color: Color(0xFF800000),
+                  size: 80,
                 ),
               ),
             ),
-            Transform(
-              transform: Matrix4.identity()..translate(0.0, 0.0)..rotateZ(0.39),
-              child: Container(
-                width: 224.64,
-                height: 224.64,
-                clipBehavior: Clip.antiAlias,
-                decoration: BoxDecoration(),
-                child: Column(
-                  mainAxisSize: MainAxisSize.min,
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Transform(
-                      transform: Matrix4.identity()..translate(0.0, 0.0)..rotateZ(-0.39),
-                      child: Container(
-                        width: 104.62,
-                        padding: const EdgeInsets.only(top: 13.08),
-                        clipBehavior: Clip.antiAlias,
-                        decoration: BoxDecoration(),
-                        child: Row(
-                          mainAxisSize: MainAxisSize.min,
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          children: [
-                            Container(
-                              width: 104.62,
-                              height: 91.54,
-                              child: Stack(),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-            ),
+            SizedBox(height: 24),
+            // All clear! Text
             Text(
               'All clear!',
               style: TextStyle(
                 color: Color(0xFF800000),
                 fontSize: 24,
                 fontFamily: 'Poppins',
-                fontWeight: FontWeight.w400,
-                height: 0,
+                fontWeight: FontWeight.w600,
               ),
             ),
+            SizedBox(height: 8),
+            // Subtext
             Text(
               'You have no recent requests!',
-              textAlign: TextAlign.center,
               style: TextStyle(
-                color: Colors.black.withOpacity(0.800000011920929),
-                fontSize: 18,
+                color: Colors.black.withOpacity(0.8),
+                fontSize: 16,
                 fontFamily: 'Poppins',
-                fontWeight: FontWeight.w300,
-                height: 0,
+                fontWeight: FontWeight.w400,
               ),
+              textAlign: TextAlign.center,
             ),
           ],
         ),

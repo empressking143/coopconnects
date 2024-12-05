@@ -28,16 +28,16 @@ class _FoodPreferencesScreenState extends State<FoodPreferencesScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color(0xFFFFF8E8), // Light beige background
+      backgroundColor: Color(0xFFFFF8E8), 
       appBar: AppBar(
-        backgroundColor: Color(0xFF800000), // Maroon color
+        backgroundColor: Color(0xFF800000), 
         elevation: 0,
         leading: IconButton(
           icon: Icon(Icons.arrow_back, color: Colors.white),
           onPressed: () => Navigator.pop(context),
         ),
         title: Align(
-          alignment: Alignment.centerLeft, // Aligns the title closer to the back button
+          alignment: Alignment.centerLeft, 
           child: Text(
             'Food Preferences',
             style: TextStyle(
@@ -48,7 +48,7 @@ class _FoodPreferencesScreenState extends State<FoodPreferencesScreen> {
             ),
           ),
         ),
-        centerTitle: false, // Centers the title only when needed
+        centerTitle: false, 
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
@@ -62,13 +62,13 @@ class _FoodPreferencesScreenState extends State<FoodPreferencesScreen> {
                 fontFamily: 'Poppins',
                 fontWeight: FontWeight.bold,
                 fontSize: 18,
-                color: Color(0xFF800000), // Maroon color
+                color: Color(0xFF800000), 
               ),
             ),
-            SizedBox(height: 20), // Increased space between the title and the choices
+            SizedBox(height: 20), 
             Wrap(
-              spacing: 16.0, // Increased space between chips
-              runSpacing: 16.0, // Increased space between rows
+              spacing: 16.0, 
+              runSpacing: 16.0, 
               children: preferences.map((preference) {
                 return ChoiceChip(
                   label: Text(preference),
@@ -88,33 +88,32 @@ class _FoodPreferencesScreenState extends State<FoodPreferencesScreen> {
                     fontWeight: FontWeight.w500,
                     color: selectedPreferences.contains(preference)
                         ? Colors.white
-                        : Color(0xFF800000), // Maroon color
+                        : Color(0xFF800000), 
                   ),
                   backgroundColor: Colors.white,
-                  selectedColor: Color(0xFF800000), // Maroon color
+                  selectedColor: Color(0xFF800000), 
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(20),
-                    side: BorderSide(color: Color(0xFFD3D3D3)), // Light greyish color
+                    side: BorderSide(color: Color(0xFFD3D3D3)), 
                   ),
                 );
               }).toList(),
             ),
-            SizedBox(height: 30), // Increased space between Preferences and Allergies sections
+            SizedBox(height: 30), 
 
-            // Allergies Section
             Text(
               'Allergies',
               style: TextStyle(
                 fontFamily: 'Poppins',
                 fontWeight: FontWeight.bold,
                 fontSize: 18,
-                color: Color(0xFF800000), // Maroon color
+                color: Color(0xFF800000), 
               ),
             ),
             SizedBox(height: 10),
             Wrap(
-              spacing: 8.0, // Space between chips
-              runSpacing: 8.0, // Space between rows
+              spacing: 8.0, 
+              runSpacing: 8.0, 
               children: allergies.map((allergy) {
                 return ChoiceChip(
                   label: Text(allergy),
@@ -134,50 +133,44 @@ class _FoodPreferencesScreenState extends State<FoodPreferencesScreen> {
                     fontWeight: FontWeight.w500,
                     color: selectedAllergies.contains(allergy)
                         ? Colors.white
-                        : Color(0xFF800000), // Maroon color
+                        : Color(0xFF800000), 
                   ),
                   backgroundColor: Colors.white,
-                  selectedColor: Color(0xFF800000), // Maroon color
+                  selectedColor: Color(0xFF800000),
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(20),
-                    side: BorderSide(color: Color(0xFFD3D3D3)), // Light greyish color
+                    side: BorderSide(color: Color(0xFFD3D3D3)), 
                   ),
                 );
               }).toList(),
             ),
             SizedBox(height: 20),
 
-            // Add Allergies Button
             Align(
               alignment: Alignment.centerLeft,
               child: ActionChip(
                 label: Icon(Icons.add, color: Color(0xFF800000)),
                 backgroundColor: Colors.white,
                 onPressed: () {
-                  // Add allergies functionality (placeholder)
                   print('Add new allergy');
                 },
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(20),
-                  side: BorderSide(color: Color(0xFFD3D3D3)), // Light greyish color
+                  side: BorderSide(color: Color(0xFFD3D3D3)), 
                 ),
               ),
             ),
-            Spacer(), // Pushes the button to the bottom
-            // Save Button
+            Spacer(), 
             SizedBox(
               width: double.infinity,
               child: ElevatedButton(
                 onPressed: () {
-                  // Save preferences and allergies logic
                   print('Selected Preferences: $selectedPreferences');
                   print('Selected Allergies: $selectedAllergies');
-
-                  // Navigate back to the profile screen
-                  Navigator.pop(context); // This goes back to the previous screen (profile_screen.dart)
+                  Navigator.pop(context);
                 },
                 style: ElevatedButton.styleFrom(
-                  backgroundColor: Colors.white, // Maroon color
+                  backgroundColor: Colors.white, 
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(10),
                   ),

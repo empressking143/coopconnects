@@ -12,7 +12,7 @@ class ProfileScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      debugShowCheckedModeBanner: false, // Hides the debug banner
+      debugShowCheckedModeBanner: false, 
       home: Scaffold(
         backgroundColor: Color(0xFFFFF8E8), // Set the background color of the screen
         appBar: AppBarWidget2(), // Remove AppBar
@@ -24,7 +24,7 @@ class ProfileScreen extends StatelessWidget {
               SizedBox(height: 20),
               // Circular element to hold an image (above the username)
               CircleAvatar(
-                radius: 80, // Adjust the size of the circle
+                radius: 80,
                 backgroundImage: AssetImage('assets/images/ming.png'), // Profile image
               ),
               SizedBox(height: 40),

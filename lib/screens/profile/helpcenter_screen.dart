@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
-import 'SupportRequests_screen.dart'; // Import the SupportRequestsScreen
+import 'SupportRequests_screen.dart'; 
+import 'GetHelpWithOrders_screen.dart';
+
 
 class HelpCenterScreen extends StatefulWidget {
   @override
@@ -63,21 +65,32 @@ class _HelpCenterScreenState extends State<HelpCenterScreen> {
             SizedBox(height: 16),
             _buildSearchBar(),
             SizedBox(height: 16),
-            _buildHelpOptionWithDropdown(
-              'Get help with my orders',
-              ['Upcoming orders', 'Past orders'],
-              _selectedOrder,
-              (newValue) => setState(() {
-                _selectedOrder = newValue;
-              }),
-              _isOrderDropdownVisible,
-              () => setState(() {
-                _isOrderDropdownVisible = !_isOrderDropdownVisible;
-                _isIssueDropdownVisible = false;
-                _isRequestDropdownVisible = false;
-                _isAccountDropdownVisible = false;
-              }),
-            ),
+_buildHelpOptionWithDropdown(
+  'Get help with my orders',
+  ['Upcoming orders', 'Past orders'], 
+  _selectedOrder,
+  (newValue) {
+    setState(() {
+      _selectedOrder = newValue;
+      _isOrderDropdownVisible = false;
+    });
+    // Navigate to UpcomingOrdersScreen ONLY when 'Upcoming orders' is selected
+    if (newValue == 'Upcoming orders') {
+      Navigator.push(
+        context,
+        MaterialPageRoute(builder: (context) => GethelpwithordersScreen()),
+      );
+    }
+  },
+  _isOrderDropdownVisible,
+  () => setState(() {
+    _isOrderDropdownVisible = !_isOrderDropdownVisible;
+    _isIssueDropdownVisible = false;
+    _isRequestDropdownVisible = false;
+    _isAccountDropdownVisible = false;
+  }),
+),
+
             if (_isOrderDropdownVisible)
               _buildDropdownList(
                 ['Upcoming orders', 'Past orders'],
@@ -114,36 +127,41 @@ class _HelpCenterScreenState extends State<HelpCenterScreen> {
               ),
             SizedBox(height: 16),
             _buildHelpOptionWithDropdown(
-              'My support requests',
-              ['Requests'],
-              _selectedRequest,
-              (newValue) => setState(() {
-                _selectedRequest = newValue;
-              }),
-              _isRequestDropdownVisible,
-              () {
-                setState(() {
-                  _isRequestDropdownVisible = !_isRequestDropdownVisible;
-                  _isOrderDropdownVisible = false;
-                  _isIssueDropdownVisible = false;
-                  _isAccountDropdownVisible = false;
-                });
-                // Navigate to SupportRequestsScreen when 'Requests' is selected
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => SupportRequestsScreen()),
-                );
-              },
-            ),
-            if (_isRequestDropdownVisible)
-              _buildDropdownList(
-                ['Requests'],
-                _selectedRequest,
-                (newValue) => setState(() {
-                  _selectedRequest = newValue;
-                  _isRequestDropdownVisible = false;
-                }),
-              ),
+  'My support requests',
+  ['Requests'], 
+  _selectedRequest,
+  (newValue) => setState(() {
+    _selectedRequest = newValue;
+  }),
+  _isRequestDropdownVisible,
+  () {
+    // Toggle only the dropdown visibility without navigation
+    setState(() {
+      _isRequestDropdownVisible = !_isRequestDropdownVisible;
+      _isOrderDropdownVisible = false;
+      _isIssueDropdownVisible = false;
+      _isAccountDropdownVisible = false;
+    });
+  },
+),
+if (_isRequestDropdownVisible)
+  _buildDropdownList(
+    ['Requests'], 
+    _selectedRequest,
+    (newValue) {
+      setState(() {
+        _selectedRequest = newValue;
+        _isRequestDropdownVisible = false;
+      });
+      // Navigate to SupportRequestsScreen ONLY when 'Requests' is selected
+      if (newValue == 'Requests') {
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => SupportRequestsScreen()),
+        );
+      }
+    },
+  ),
             SizedBox(height: 16),
             _buildHelpOptionWithDropdown(
               'My Account',
@@ -273,9 +291,9 @@ class _HelpCenterScreenState extends State<HelpCenterScreen> {
 
   Widget _buildDropdownList(List<String> options, String? selectedValue, Function(String?) onChanged) {
     return Align(
-      alignment: Alignment.centerRight,  // Align dropdown to the right
+      alignment: Alignment.centerRight,  
       child: Container(
-        width: 250, // Width of the dropdown
+        width: 250, 
         decoration: BoxDecoration(
           color: Colors.white,
           borderRadius: BorderRadius.circular(8),
