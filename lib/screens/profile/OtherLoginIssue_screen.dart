@@ -5,60 +5,77 @@ class OtherLoginIssueScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Color(0xFF800000), // AppBar color
+        backgroundColor: Color(0xFF800000), 
         leading: IconButton(
-          icon: Icon(Icons.arrow_back, color: Colors.white), // Back button
+          icon: Icon(Icons.arrow_back, color: Colors.white), 
           onPressed: () {
-            Navigator.pop(context); // Navigate back on tap
+            Navigator.pop(context); 
           },
         ),
-        titleSpacing: 0, // Removes extra space between back button and title
+        titleSpacing: 0, 
         title: Text(
           'Other Login Issue',
           style: TextStyle(
-            color: Colors.white, // Title text color
+            color: Colors.white, 
             fontFamily: 'Poppins',
             fontWeight: FontWeight.bold,
             fontSize: 20,
           ),
         ),
-        elevation: 2, // Adds slight shadow for the AppBar
+        elevation: 2,
       ),
-      backgroundColor: Color(0xFFFFF8E8), // Page background color
+      backgroundColor: Color(0xFFFFF8E8), 
       body: Padding(
-        padding: const EdgeInsets.only(left: 16.0, right: 16.0), // Horizontal padding aligns with AppBar title
+        padding: const EdgeInsets.only(left: 16.0, right: 16.0), 
         child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.start, 
           children: [
-            SizedBox(height: 16.0), // Add some spacing below the AppBar
-            Text(
-              "Couldn't find the answer to your account login issue?",
-              style: TextStyle(
-                fontSize: 16.0,
-                fontFamily: 'Poppins',
-                color: Colors.black,
+            SizedBox(height: 16.0), 
+            SizedBox(
+              width: 338, 
+              child: Text(
+                "Couldn't find the answer to your account login issue?",
+                style: TextStyle(
+                  fontSize: 16.0,
+                  fontFamily: 'Poppins',
+                  color: Colors.black,
+                ),
               ),
             ),
             SizedBox(height: 8.0),
-            Text(
-              "Let us know by filling the form below and we will get back to you.",
-              style: TextStyle(
-                fontSize: 14.0,
-                fontFamily: 'Poppins',
-                color: Colors.black,
+            SizedBox(
+              width: 338, 
+              child: Text(
+                "Let us know by filling the form below and we will get back to you.",
+                style: TextStyle(
+                  fontSize: 14.0,
+                  fontFamily: 'Poppins',
+                  color: Colors.black,
+                ),
               ),
             ),
             SizedBox(height: 16.0),
-            TextField(
-              decoration: InputDecoration(
-                hintText: 'Your question',
-                hintStyle: TextStyle(fontFamily: 'Poppins'),
-                border: OutlineInputBorder(
+            Container(
+              width: double.infinity, 
+              height: 150,
+              decoration: ShapeDecoration(
+                color: Color(0x99D9D9D9),
+                shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(10),
                 ),
-                contentPadding: EdgeInsets.symmetric(vertical: 10.0, horizontal: 12.0),
               ),
-              maxLines: 5,
+              child: Padding(
+                padding: const EdgeInsets.all(12.0),
+                child: TextField(
+                  maxLines: 5,
+                  decoration: InputDecoration(
+                    hintText: 'Your question',
+                    hintStyle: TextStyle(fontFamily: 'Poppins'),
+                    border: InputBorder.none,
+                    contentPadding: EdgeInsets.symmetric(vertical: 10.0, horizontal: 12.0),
+                  ),
+                ),
+              ),
             ),
             SizedBox(height: 16.0),
             Row(
@@ -95,9 +112,9 @@ class OtherLoginIssueScreen extends StatelessWidget {
                 fontFamily: 'Poppins',
               ),
             ),
-            Spacer(),
+            SizedBox(height: 24.0), 
             SizedBox(
-              width: double.infinity,
+              width: double.infinity, 
               child: ElevatedButton(
                 onPressed: () {
                   // Send message functionality

@@ -22,14 +22,13 @@ class SupportRequestsScreen extends StatelessWidget {
           ),
         ),
         backgroundColor: Color(0xFF800000),
-        titleSpacing: 0, // Reduce space between the back button and title
+        titleSpacing: 0, 
         elevation: 0,
       ),
-      body: Center( // Centering the entire content
+      body: Center( 
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            // Icon or Image Placeholder
             Container(
               width: 150,
               height: 150,

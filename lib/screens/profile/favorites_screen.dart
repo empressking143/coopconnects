@@ -114,7 +114,7 @@ class FavoritesPage extends StatelessWidget {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Padding(
-                              padding: const EdgeInsets.only(right: 20), // Increased left padding for kiosk text
+                              padding: const EdgeInsets.only(right: 20),
                               child: Text(
                                 item['kiosk'],
                                 style: TextStyle(
@@ -124,14 +124,13 @@ class FavoritesPage extends StatelessWidget {
                                 ),
                               ),
                             ),
-                            SizedBox(height: 25), // Space between kiosk text and favorite icon
+                            SizedBox(height: 25), 
                             IconButton(
                               icon: Icon(
                                 Icons.favorite,
                                 color: Color(0xFF800000),
                               ),
                               onPressed: () {
-                                // Add functionality for favorites if needed
                               },
                             ),
                           ],
@@ -144,12 +143,11 @@ class FavoritesPage extends StatelessWidget {
             ),
           ),
           Padding(
-            padding: const EdgeInsets.only(left: 10, right: 10, bottom: 20), // Adjusted padding for higher placement
+            padding: const EdgeInsets.only(left: 10, right: 10, bottom: 20), 
             child: Container(
-              width: double.infinity, // Makes the button as wide as the available space
+              width: double.infinity, 
               child: ElevatedButton(
                 onPressed: () {
-                  // Navigate to profile_screen.dart when the button is pressed
                   Navigator.pushReplacement(
                     context,
                     MaterialPageRoute(builder: (context) => ProfileScreen()),
@@ -166,7 +164,7 @@ class FavoritesPage extends StatelessWidget {
                   style: TextStyle(
                     color: Color(0xFF800000),
                     fontSize: 20,
-                    fontWeight: FontWeight.w600, // Slightly bolder text
+                    fontWeight: FontWeight.w600, 
                     fontFamily: 'Poppins',
                   ),
                 ),

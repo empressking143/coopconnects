@@ -1,16 +1,20 @@
 import 'package:flutter/material.dart';
 
-class AppIssuesScreen extends StatefulWidget {
+class AvailablePaymentMethodsScreen extends StatefulWidget {
   @override
-  _AppIssuesScreenState createState() => _AppIssuesScreenState();
+  _AvailablePaymentMethodsScreenState createState() =>
+      _AvailablePaymentMethodsScreenState();
 }
 
-class _AppIssuesScreenState extends State<AppIssuesScreen> {
-  int? selectedIndex; 
+class _AvailablePaymentMethodsScreenState
+    extends State<AvailablePaymentMethodsScreen> {
+  // Track the index of the selected button (-1 means none selected)
+  int selectedButtonIndex = -1;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color(0xFFFFF8E8),
+      backgroundColor: Color(0xFFFFF8E8), 
       appBar: AppBar(
         leading: IconButton(
           icon: Icon(Icons.arrow_back, color: Colors.white),
@@ -18,8 +22,9 @@ class _AppIssuesScreenState extends State<AppIssuesScreen> {
             Navigator.pop(context);
           },
         ),
+        titleSpacing: 0,
         title: Text(
-          'App issues',
+          'Available payment methods',
           style: TextStyle(
             color: Colors.white,
             fontFamily: 'Poppins',
@@ -28,14 +33,15 @@ class _AppIssuesScreenState extends State<AppIssuesScreen> {
           ),
         ),
         backgroundColor: Color(0xFF800000), 
+        centerTitle: false,
       ),
       body: SingleChildScrollView(
-        padding: EdgeInsets.all(16.0),
+        padding: const EdgeInsets.all(16.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              'Having issues with the app? Try these quick fixes:',
+              'There are various payment methods available at CO-OP Connects! You can pay via:',
               style: TextStyle(
                 color: Colors.black.withOpacity(0.8),
                 fontFamily: 'Poppins',
@@ -44,14 +50,16 @@ class _AppIssuesScreenState extends State<AppIssuesScreen> {
               ),
             ),
             SizedBox(height: 16),
-            buildStep(1, 'Check your internet connection: Ensure a stable connection for seamless app use'),
+            buildPaymentMethodStep(1, 'Cash on counter'),
             SizedBox(height: 12),
-            buildStep(2, 'Refresh your device: Close other apps for optimum performance'),
+            buildPaymentMethodStep(2, 'PayPal'),
             SizedBox(height: 12),
-            buildStep(3, 'Start fresh: Reinstall the app if issues persist'),
+            buildPaymentMethodStep(3, 'GCash'),
+            SizedBox(height: 12),
+            buildPaymentMethodStep(4, 'PayMaya'),
             SizedBox(height: 24),
             Text(
-              'If the issue still persists after you’ve tried all the steps above, it could be due to a temporary server downtime. Don’t worry, our technical team would already be on the case! We’d advise checking back after some time.',
+              'To know more details about our payment features, head over to the CO-OP Connects pay section on Help Center.',
               style: TextStyle(
                 color: Colors.black.withOpacity(0.8),
                 fontFamily: 'Poppins',
@@ -60,26 +68,28 @@ class _AppIssuesScreenState extends State<AppIssuesScreen> {
               ),
             ),
             SizedBox(height: 24),
-            Text(
-              'Was this helpful?',
-              style: TextStyle(
-                color: Colors.black.withOpacity(0.8),
-                fontFamily: 'Poppins',
-                fontWeight: FontWeight.w300,
-                fontSize: 15,
+            Center(
+              child: Text(
+                'Was this helpful?',
+                style: TextStyle(
+                  color: Colors.black.withOpacity(0.8),
+                  fontFamily: 'Poppins',
+                  fontWeight: FontWeight.w300,
+                  fontSize: 15,
+                ),
               ),
             ),
             SizedBox(height: 16),
-            buildResponseButton('Yes, I got my answer', 0),
+            buildResponseButton(context, 'Yes, I got my answer', 0),
             SizedBox(height: 12),
-            buildResponseButton('No, add more information', 1),
+            buildResponseButton(context, 'No, add more information', 1),
           ],
         ),
       ),
     );
   }
 
-  Widget buildStep(int stepNumber, String stepText) {
+  Widget buildPaymentMethodStep(int stepNumber, String methodName) {
     return Row(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -109,7 +119,7 @@ class _AppIssuesScreenState extends State<AppIssuesScreen> {
         SizedBox(width: 12),
         Expanded(
           child: Text(
-            stepText,
+            methodName,
             style: TextStyle(
               color: Colors.black.withOpacity(0.8),
               fontFamily: 'Poppins',
@@ -122,20 +132,20 @@ class _AppIssuesScreenState extends State<AppIssuesScreen> {
     );
   }
 
-  Widget buildResponseButton(String text, int index) {
+  Widget buildResponseButton(BuildContext context, String text, int index) {
     return GestureDetector(
       onTap: () {
         setState(() {
-          // Toggle the selected index
-          selectedIndex = (selectedIndex == index) ? null : index;
+    
+          selectedButtonIndex = index;
         });
       },
       child: Container(
         width: double.infinity,
         height: 50,
         decoration: BoxDecoration(
-          color: selectedIndex == index
-              ? Color(0xFF800000)
+          color: selectedButtonIndex == index
+              ? Color(0xFF800000) 
               : Colors.white, 
           borderRadius: BorderRadius.circular(10),
           boxShadow: [
@@ -150,7 +160,7 @@ class _AppIssuesScreenState extends State<AppIssuesScreen> {
           child: Text(
             text,
             style: TextStyle(
-              color: selectedIndex == index
+              color: selectedButtonIndex == index
                   ? Colors.white 
                   : Color(0xFF800000), 
               fontFamily: 'Poppins',

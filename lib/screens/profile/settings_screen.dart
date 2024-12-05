@@ -6,7 +6,6 @@ class SettingsScreen extends StatefulWidget {
 }
 
 class _SettingsScreenState extends State<SettingsScreen> {
-  // State variables for the checkboxes
   bool _receivePushNotifications = false;
   bool _receiveOffersByEmail = false;
   bool _showFloatingIcon = false;
@@ -14,19 +13,19 @@ class _SettingsScreenState extends State<SettingsScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color(0xFFFFF8E8), // Background color
+      backgroundColor: Color(0xFFFFF8E8), 
       appBar: AppBar(
         leading: IconButton(
-          icon: Icon(Icons.arrow_back, color: Colors.white), // Back button color
+          icon: Icon(Icons.arrow_back, color: Colors.white), 
           onPressed: () {
-            Navigator.pop(context); // Navigate back
+            Navigator.pop(context);
           },
         ),
-        titleSpacing: 0, // Moves title closer to the back button
+        titleSpacing: 0, 
         title: Text(
           'Settings',
           style: TextStyle(
-            color: Colors.white, // Text color
+            color: Colors.white, 
             fontFamily: 'Poppins',
             fontWeight: FontWeight.w700,
             fontSize: 24,
@@ -103,7 +102,7 @@ class NotificationOption extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
-        color: value ? Color(0xFF800000) : Colors.white, // Dynamic color
+        color: value ? Color(0xFF800000) : Colors.white, 
         borderRadius: BorderRadius.circular(10),
         border: Border.all(color: Color(0x7F808080), width: 1),
         boxShadow: [
@@ -116,10 +115,10 @@ class NotificationOption extends StatelessWidget {
       ),
       child: ListTile(
         leading: Checkbox(
-          value: value, // Dynamic checkbox state
-          activeColor: Colors.white, // Checkbox tick color
-          checkColor: Color(0xFF800000), // Checkbox background color
-          onChanged: onChanged, // Calls the callback when clicked
+          value: value, 
+          activeColor: Colors.white, 
+          checkColor: Color(0xFF800000), 
+          onChanged: onChanged, 
         ),
         title: Text(
           label,
@@ -127,7 +126,7 @@ class NotificationOption extends StatelessWidget {
             fontFamily: 'Poppins',
             fontWeight: FontWeight.w300,
             fontSize: 16,
-            color: value ? Colors.white : Colors.black.withOpacity(0.8), // Dynamic text color
+            color: value ? Colors.white : Colors.black.withOpacity(0.8), 
           ),
         ),
       ),

@@ -1,16 +1,18 @@
 import 'package:flutter/material.dart';
 
-class AppIssuesScreen extends StatefulWidget {
+class TroubleWithCheckoutScreen extends StatefulWidget {
   @override
-  _AppIssuesScreenState createState() => _AppIssuesScreenState();
+  _TroubleWithCheckoutScreenState createState() =>
+      _TroubleWithCheckoutScreenState();
 }
 
-class _AppIssuesScreenState extends State<AppIssuesScreen> {
-  int? selectedIndex; 
+class _TroubleWithCheckoutScreenState extends State<TroubleWithCheckoutScreen> {
+  int? selectedIndex;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color(0xFFFFF8E8),
+      backgroundColor: Color(0xFFFFF8E8), 
       appBar: AppBar(
         leading: IconButton(
           icon: Icon(Icons.arrow_back, color: Colors.white),
@@ -18,8 +20,9 @@ class _AppIssuesScreenState extends State<AppIssuesScreen> {
             Navigator.pop(context);
           },
         ),
+        titleSpacing: 0,
         title: Text(
-          'App issues',
+          'I\'m having trouble with my checkout',
           style: TextStyle(
             color: Colors.white,
             fontFamily: 'Poppins',
@@ -28,14 +31,15 @@ class _AppIssuesScreenState extends State<AppIssuesScreen> {
           ),
         ),
         backgroundColor: Color(0xFF800000), 
+        centerTitle: false,
       ),
       body: SingleChildScrollView(
-        padding: EdgeInsets.all(16.0),
+        padding: const EdgeInsets.all(16.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              'Having issues with the app? Try these quick fixes:',
+              'If you’re unable to click the Checkout button, here are the most likely scenarios:',
               style: TextStyle(
                 color: Colors.black.withOpacity(0.8),
                 fontFamily: 'Poppins',
@@ -44,14 +48,15 @@ class _AppIssuesScreenState extends State<AppIssuesScreen> {
               ),
             ),
             SizedBox(height: 16),
-            buildStep(1, 'Check your internet connection: Ensure a stable connection for seamless app use'),
+            buildStep(1, 'The kiosk/store is closed.'),
             SizedBox(height: 12),
-            buildStep(2, 'Refresh your device: Close other apps for optimum performance'),
+            buildStep(2, 'One of your selected items is no longer available.'),
             SizedBox(height: 12),
-            buildStep(3, 'Start fresh: Reinstall the app if issues persist'),
+            buildStep(3,
+                'Make sure you have sufficient balance if you are paying with Gcash, PayMaya, etc.'),
             SizedBox(height: 24),
             Text(
-              'If the issue still persists after you’ve tried all the steps above, it could be due to a temporary server downtime. Don’t worry, our technical team would already be on the case! We’d advise checking back after some time.',
+              'In any of these instances, please place another order.',
               style: TextStyle(
                 color: Colors.black.withOpacity(0.8),
                 fontFamily: 'Poppins',
@@ -68,11 +73,20 @@ class _AppIssuesScreenState extends State<AppIssuesScreen> {
                 fontWeight: FontWeight.w300,
                 fontSize: 15,
               ),
+              textAlign: TextAlign.center,
             ),
             SizedBox(height: 16),
-            buildResponseButton('Yes, I got my answer', 0),
+            buildResponseButton(
+              context,
+              'Yes, I got my answer',
+              0, // Index for the first button
+            ),
             SizedBox(height: 12),
-            buildResponseButton('No, add more information', 1),
+            buildResponseButton(
+              context,
+              'No, add more information',
+              1, // Index for the second button
+            ),
           ],
         ),
       ),
@@ -122,11 +136,10 @@ class _AppIssuesScreenState extends State<AppIssuesScreen> {
     );
   }
 
-  Widget buildResponseButton(String text, int index) {
+  Widget buildResponseButton(BuildContext context, String text, int index) {
     return GestureDetector(
       onTap: () {
         setState(() {
-          // Toggle the selected index
           selectedIndex = (selectedIndex == index) ? null : index;
         });
       },
@@ -135,7 +148,7 @@ class _AppIssuesScreenState extends State<AppIssuesScreen> {
         height: 50,
         decoration: BoxDecoration(
           color: selectedIndex == index
-              ? Color(0xFF800000)
+              ? Color(0xFF800000) 
               : Colors.white, 
           borderRadius: BorderRadius.circular(10),
           boxShadow: [

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'SupportRequests_screen.dart'; // Import the SupportRequestsScreen
+import 'SupportRequests_screen.dart'; 
 import 'GetHelpWithOrders_screen.dart';
 
 
@@ -67,7 +67,7 @@ class _HelpCenterScreenState extends State<HelpCenterScreen> {
             SizedBox(height: 16),
 _buildHelpOptionWithDropdown(
   'Get help with my orders',
-  ['Upcoming orders', 'Past orders'], // Dropdown options
+  ['Upcoming orders', 'Past orders'], 
   _selectedOrder,
   (newValue) {
     setState(() {
@@ -128,7 +128,7 @@ _buildHelpOptionWithDropdown(
             SizedBox(height: 16),
             _buildHelpOptionWithDropdown(
   'My support requests',
-  ['Requests'], // Dropdown options
+  ['Requests'], 
   _selectedRequest,
   (newValue) => setState(() {
     _selectedRequest = newValue;
@@ -146,7 +146,7 @@ _buildHelpOptionWithDropdown(
 ),
 if (_isRequestDropdownVisible)
   _buildDropdownList(
-    ['Requests'], // Dropdown options
+    ['Requests'], 
     _selectedRequest,
     (newValue) {
       setState(() {
@@ -291,9 +291,9 @@ if (_isRequestDropdownVisible)
 
   Widget _buildDropdownList(List<String> options, String? selectedValue, Function(String?) onChanged) {
     return Align(
-      alignment: Alignment.centerRight,  // Align dropdown to the right
+      alignment: Alignment.centerRight,  
       child: Container(
-        width: 250, // Width of the dropdown
+        width: 250, 
         decoration: BoxDecoration(
           color: Colors.white,
           borderRadius: BorderRadius.circular(8),

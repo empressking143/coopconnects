@@ -1,17 +1,17 @@
 import 'package:flutter/material.dart';
-import 'foodpreferences_screen.dart'; // Import the Food Preferences screen
-import 'favorites_screen.dart'; // Import the Favorites screen
-import 'settings_screen.dart'; // Import the Settings screen
-import 'helpcenter_screen.dart'; // Import the HelpCenterScreen
+import 'foodpreferences_screen.dart'; 
+import 'favorites_screen.dart'; 
+import 'settings_screen.dart'; 
+import 'helpcenter_screen.dart'; 
 
 class ProfileScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      debugShowCheckedModeBanner: false, // Hides the debug banner
+      debugShowCheckedModeBanner: false, 
       home: Scaffold(
-        backgroundColor: Color(0xFFFFF8E8), // Set the background color of the screen
-        appBar: null, // Remove AppBar
+        backgroundColor: Color(0xFFFFF8E8), 
+        appBar: null, 
         body: Padding(
           padding: const EdgeInsets.all(16.0),
           child: Column(
@@ -20,7 +20,7 @@ class ProfileScreen extends StatelessWidget {
               SizedBox(height: 20),
               // Circular element to hold an image (above the username)
               CircleAvatar(
-                radius: 80, // Adjust the size of the circle
+                radius: 80,
                 backgroundImage: AssetImage('assets/images/ming.png'), // Profile image
               ),
               SizedBox(height: 40),

@@ -11,12 +11,12 @@ class _CantSignupScreenPageState extends State<CantSignupScreenPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color(0xFFFFF8E8), // Light background color
+      backgroundColor: Color(0xFFFFF8E8), 
       appBar: AppBar(
         leading: IconButton(
           icon: Icon(Icons.arrow_back, color: Colors.white),
           onPressed: () {
-            Navigator.pop(context); // Navigate back
+            Navigator.pop(context); 
           },
         ),
         titleSpacing: 0,
@@ -29,18 +29,18 @@ class _CantSignupScreenPageState extends State<CantSignupScreenPage> {
             fontSize: 20,
           ),
         ),
-        backgroundColor: Color(0xFF800000), // Dark red AppBar color
+        backgroundColor: Color(0xFF800000), 
         centerTitle: false,
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Column(
           children: [
-            SizedBox(height: 24), // Spacing after the AppBar
+            SizedBox(height: 24), 
             Center(
               child: Text(
                 'If you can’t sign up using your email, it is likely that you are already registered at Coop Connects.',
-                textAlign: TextAlign.center, // Center the text horizontally
+                textAlign: TextAlign.center, 
                 style: TextStyle(
                   color: Colors.black.withOpacity(0.8),
                   fontSize: 18,
@@ -49,7 +49,7 @@ class _CantSignupScreenPageState extends State<CantSignupScreenPage> {
                 ),
               ),
             ),
-            SizedBox(height: 64), // Increased space before "Was this helpful?"
+            SizedBox(height: 64), 
             Center(
               child: Text(
                 'Was this helpful?',
@@ -61,9 +61,9 @@ class _CantSignupScreenPageState extends State<CantSignupScreenPage> {
                 ),
               ),
             ),
-            SizedBox(height: 32), // Increased space before the buttons
+            SizedBox(height: 32), 
             buildButton('Yes, I got my answer', 'yes'),
-            SizedBox(height: 24), // Increased space between buttons
+            SizedBox(height: 24), 
             buildButton('No, add more information', 'no'),
           ],
         ),
@@ -76,7 +76,7 @@ class _CantSignupScreenPageState extends State<CantSignupScreenPage> {
     return GestureDetector(
       onTap: () {
         setState(() {
-          selectedButton = buttonKey; // Track the selected button
+          selectedButton = buttonKey; 
         });
       },
       child: Container(

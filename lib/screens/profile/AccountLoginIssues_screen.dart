@@ -19,7 +19,7 @@ class AccountLoginIssuesPage extends StatelessWidget {
             color: Colors.white,
             fontFamily: 'Poppins',
             fontWeight: FontWeight.w700,
-            fontSize: 24, // Matches the font size reference
+            fontSize: 24, 
           ),
         ),
         backgroundColor: Color(0xFF800000),
@@ -29,11 +29,11 @@ class AccountLoginIssuesPage extends StatelessWidget {
         padding: const EdgeInsets.all(16.0),
         child: Column(
           children: [
-            SizedBox(height: 24), // Slightly more spacing above the first box
+            SizedBox(height: 24), 
             buildOption(context, 'I can’t sign up using my email address'),
-            SizedBox(height: 20), // Increased spacing between the text boxes
+            SizedBox(height: 20), 
             buildOption(context, 'Number already registered'),
-            SizedBox(height: 20), // Increased spacing between the text boxes
+            SizedBox(height: 20), 
             buildOption(context, 'Other login issue'),
           ],
         ),
@@ -61,7 +61,7 @@ class AccountLoginIssuesPage extends StatelessWidget {
         child: Text(
           text,
           style: TextStyle(
-            color: Color(0xFF800000), // Text color matches AppBar
+            color: Color(0xFF800000), 
             fontFamily: 'Poppins',
             fontWeight: FontWeight.w300,
             fontSize: 16,
