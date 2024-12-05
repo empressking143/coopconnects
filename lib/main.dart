@@ -8,6 +8,7 @@ import 'screens/home/home_screen.dart';
 import 'screens/kiosk/kiosk_screen.dart';
 import 'screens/notification/notification_screen.dart';
 import 'screens/profile/profile_screen.dart';
+import 'providers/cart_provider.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -17,6 +18,7 @@ void main() async {
     MultiProvider(
       providers: [
         ChangeNotifierProvider(create: (_) => MenuProvider()),
+        ChangeNotifierProvider(create: (_) => CartProvider()),
         ChangeNotifierProvider(create: (_) => KioskProvider()),
         ChangeNotifierProvider(create: (_) => NotificationProvider()),
       ],

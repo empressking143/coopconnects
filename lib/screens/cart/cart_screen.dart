@@ -1,240 +1,111 @@
 import 'package:flutter/material.dart';
-import 'package:coopconnects/widgets/app_bar.dart';
-import 'package:coopconnects/widgets/nav_bar.dart';
-// import 'order_confirmation_screen.dart';
+import 'package:provider/provider.dart';
+import '/providers/cart_provider.dart';
 
-class CartScreen extends StatefulWidget {
-  @override
-  _CartScreenState createState() => _CartScreenState();
-}
-
-class _CartScreenState extends State<CartScreen> {
-  List<int> itemQuantities = [1, 1, 1];
-
+class CartScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBarWidget(),
-      backgroundColor: Color(0xFFFFF7E8),
-      body: Padding(
-        padding: const EdgeInsets.all(10.0),
-        child: Column(
-          children: [
-            CartItem(
-              itemNumber: 1,
-              itemName: 'Chicken Curry',
-              imageUrl: 'assets/images/Chicken Curry.jpg',
-              quantity: itemQuantities[0],
-              onQuantityChanged: (newQuantity) {
-                setState(() {
-                  itemQuantities[0] = newQuantity;
-                });
-              },
-            ),
-            CartItem(
-              itemNumber: 2,
-              itemName: 'Dinuguan',
-              imageUrl: 'assets/images/Dinuguan.jpg',
-              quantity: itemQuantities[1],
-              onQuantityChanged: (newQuantity) {
-                setState(() {
-                  itemQuantities[1] = newQuantity;
-                });
-              },
-            ),
-            CartItem(
-              itemNumber: 3,
-              itemName: 'Beef Kare-kare',
-              imageUrl: 'assets/images/Kare-kare.jpg',
-              quantity: itemQuantities[2],
-              onQuantityChanged: (newQuantity) {
-                setState(() {
-                  itemQuantities[2] = newQuantity;
-                });
-              },
-            ),
-            Spacer(),
-            Container(
-              width: double.infinity,
-              margin: const EdgeInsets.all(10.0),
-              child: ElevatedButton(
-                onPressed: () {
-                  
-                  // Navigator.push(
-                  //   context,
-                  //   MaterialPageRoute(builder: (context) => OrderConfirmationScreen()),
-                  // );
+    final cartProvider = Provider.of<CartProvider>(context);
+    final cartItems = cartProvider.items;
 
-                  print('Order Confirmed!');
-                },
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: Color(0xFFFFC95F),
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(10),
-                  ),
-                ),
-                child: Text(
-                  'Confirm Order',
-                  style: TextStyle(
-                    color: Colors.black,
-                    fontSize: 15,
-                    fontFamily: 'Poppins',
-                    fontWeight: FontWeight.w400,
-                  ),
-                ),
-              ),
-            ),
-          ],
-        ),
-      ),
-      bottomNavigationBar: NavBar(),
+    // Calculate subtotal
+    final double subtotal = cartItems.fold(
+      0.0,
+      (sum, item) => sum + (item.price * item.quantity),
     );
-  }
-}
 
-class CartItem extends StatelessWidget {
-  final int itemNumber;
-  final String itemName;
-  final String imageUrl;
-  final int quantity;
-  final ValueChanged<int> onQuantityChanged;
-
-  CartItem({
-    required this.itemNumber,
-    required this.itemName,
-    required this.imageUrl,
-    required this.quantity,
-    required this.onQuantityChanged,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Padding(
-          padding: const EdgeInsets.only(left: 10, bottom: 5),
-          child: Text(
-            'Item $itemNumber',
-            style: TextStyle(
-              fontSize: 18,
-              color: Color(0xFF800000),
-              fontFamily: 'Poppins',
-              fontWeight: FontWeight.w600,
-            ),
-          ),
+    return Scaffold(
+      appBar: AppBar(
+        title: Text(
+          'Cart',
+          style: TextStyle(color: Colors.white), // Text color white
         ),
-        Stack(
-          children: [
-            Container(
-              margin: const EdgeInsets.only(bottom: 10),
-              height: 160,
-              decoration: BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.circular(10),
-                boxShadow: [
-                  BoxShadow(
-                    color: Color(0x3F000000),
-                    blurRadius: 4,
-                    offset: Offset(0, 4),
+        backgroundColor: Color(0xFF800000), // Maroon background
+        iconTheme: IconThemeData(color: Colors.white), // Back arrow color white
+      ),
+      body: cartItems.isEmpty
+          ? Center(child: Text("Your cart is empty!"))
+          : ListView.builder(
+              itemCount: cartItems.length,
+              itemBuilder: (context, index) {
+                final item = cartItems[index];
+                return ListTile(
+                  leading: Image.network(item.imageUrl, width: 50, height: 50),
+                  title: Text(item.name),
+                  subtitle: Text("₱${(item.price * item.quantity).toStringAsFixed(2)}"),
+                  trailing: Row(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      IconButton(
+                        icon: Icon(Icons.remove),
+                        onPressed: () {
+                          if (item.quantity > 1) {
+                            cartProvider.updateQuantity(item.name, item.quantity - 1);
+                          }
+                        },
+                      ),
+                      Text('${item.quantity}'),
+                      IconButton(
+                        icon: Icon(Icons.add),
+                        onPressed: () {
+                          cartProvider.updateQuantity(item.name, item.quantity + 1);
+                        },
+                      ),
+                    ],
                   ),
-                ],
-              ),
-              child: ClipRRect(
-                borderRadius: BorderRadius.circular(10),
-                child: Image.network(
-                  imageUrl,
-                  width: double.infinity,
-                  height: double.infinity,
-                  fit: BoxFit.cover,
+                );
+              },
+            ),
+      bottomNavigationBar: cartItems.isEmpty
+          ? null
+          : Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Padding(
+                  padding: const EdgeInsets.symmetric(vertical: 15.0, horizontal: 50.0),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text(
+                        'Total:',
+                        style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                      ),
+                      Text(
+                        '₱ ${subtotal.toStringAsFixed(2)}',
+                        style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                      ),
+                    ],
+                  ),
                 ),
-              ),
-            ),
-            Positioned(
-              top: 20,
-              right: 20,
-              child: Text(
-                itemName,
-                style: TextStyle(
-                  fontSize: 16,
-                  color: Color(0xFF800000),
-                  fontFamily: 'Poppins',
-                  fontWeight: FontWeight.bold,
-                  shadows: [
-                    Shadow(
-                      color: Colors.black.withOpacity(0.5),
-                      offset: Offset(2, 2),
-                      blurRadius: 4,
+                ElevatedButton(
+                  onPressed: () {
+                    // Confirm order logic here
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      SnackBar(
+                        content: Text('Order Confirmed!'),
+                        duration: Duration(seconds: 2),
+                      ),
+                    );
+                  },
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: const Color(0xFFFFC107),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(10),
                     ),
-                  ],
+                    padding: const EdgeInsets.symmetric(vertical: 15, horizontal: 100),
+                  ),
+                  child: const Text(
+                    "Confirm Order",
+                    style: TextStyle(
+                      fontSize: 16,
+                      fontFamily: 'Poppins',
+                      fontWeight: FontWeight.w600,
+                      color: Colors.black,
+                    ),
+                  ),
                 ),
-              ),
+              ],
             ),
-            Positioned(
-              bottom: 10,
-              right: 10,
-              child: Row(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  GestureDetector(
-                    onTap: () {
-                      if (quantity > 1) {
-                        onQuantityChanged(quantity - 1);
-                      }
-                    },
-                    child: Container(
-                      padding: EdgeInsets.all(8),
-                      decoration: BoxDecoration(
-                        shape: BoxShape.circle,
-                        color: Colors.white.withOpacity(0.7),
-                      ),
-                      child: Icon(Icons.remove, size: 18, color: Colors.black),
-                    ),
-                  ),
-                  SizedBox(width: 8),
-                  Container(
-                    padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 5),
-                    decoration: BoxDecoration(
-                      color: Colors.white,
-                      borderRadius: BorderRadius.circular(30),
-                      boxShadow: [
-                        BoxShadow(
-                          color: Colors.white.withOpacity(0.2),
-                          blurRadius: 4,
-                          offset: Offset(0, 2),
-                        ),
-                      ],
-                    ),
-                    child: Text(
-                      '$quantity',
-                      style: TextStyle(
-                        fontSize: 16,
-                        fontWeight: FontWeight.bold,
-                        color: Colors.black,
-                        fontFamily: 'Poppins',
-                      ),
-                    ),
-                  ),
-                  SizedBox(width: 8),
-                  GestureDetector(
-                    onTap: () {
-                      onQuantityChanged(quantity + 1);
-                    },
-                    child: Container(
-                      padding: EdgeInsets.all(8),
-                      decoration: BoxDecoration(
-                        shape: BoxShape.circle,
-                        color: Colors.white.withOpacity(0.7),
-                      ),
-                      child: Icon(Icons.add, size: 18, color: Colors.black),
-                    ),
-                  ),
-                ],
-              ),
-            ),
-          ],
-        ),
-      ],
     );
   }
 }
