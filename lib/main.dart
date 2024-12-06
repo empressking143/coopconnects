@@ -6,6 +6,7 @@ import 'package:coopconnects/screens/profile/NumberRegistered_screen.dart';
 import 'package:coopconnects/screens/profile/OtherLoginIssue_screen.dart';
 import 'package:coopconnects/screens/profile/PaymentIssues_screen.dart';
 import 'package:coopconnects/screens/profile/TroubleWithCheckout_screen.dart';
+import 'package:coopconnects/screens/profile/ContactSupport_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'screens/kiosk/kiosk_screen.dart'; 
@@ -29,7 +30,7 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      home: ProfileScreen(), // Set ProfileScreen as the main screen
+      home: ContactSupportScreen(), // Set ProfileScreen as the main screen
       debugShowCheckedModeBanner: false,
     );
   }
