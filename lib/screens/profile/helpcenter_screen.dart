@@ -1,8 +1,8 @@
+import 'package:coopconnects/screens/profile/AccountLoginIssues_screen.dart';
+import 'package:coopconnects/screens/profile/AppIssues_screen.dart';
+import 'package:coopconnects/screens/profile/PaymentIssues_screen.dart';
+import 'package:coopconnects/screens/profile/SupportRequests_screen.dart';
 import 'package:flutter/material.dart';
-import 'SupportRequests_screen.dart'; 
-import 'GetHelpWithOrders_screen.dart';
-
-
 class HelpCenterScreen extends StatefulWidget {
   @override
   _HelpCenterScreenState createState() => _HelpCenterScreenState();
@@ -10,20 +10,69 @@ class HelpCenterScreen extends StatefulWidget {
 
 class _HelpCenterScreenState extends State<HelpCenterScreen> {
   TextEditingController _searchController = TextEditingController();
-  String? _selectedOrder = 'Upcoming orders';
-  String? _selectedIssue = 'Account login issues';
-  String? _selectedRequest = 'Requests';
-  String? _selectedAccount = 'Update Account information';
+  String _searchQuery = "";
 
-  bool _isOrderDropdownVisible = false;
-  bool _isIssueDropdownVisible = false;
-  bool _isRequestDropdownVisible = false;
-  bool _isAccountDropdownVisible = false;
+  // Define options for each dropdown and their respective screens
+  final Map<String, List<Map<String, dynamic>>> _dropdownOptions = {
+    'Get help with my orders': [
+      {'title': 'Upcoming orders', 'screen': SupportRequestsScreen()},
+      {'title': 'Past orders', 'screen': SupportRequestsScreen()},
+    ],
+    'I’m having trouble placing an order': [
+      {'title': 'Account login issues', 'screen': AccountLoginIssuesPage()},
+      {'title': 'Payment issues', 'screen': PaymentIssuesScreen()},
+      {'title': 'App issues', 'screen': AppIssuesScreen()},
+    ],
+    'My support requests': [
+      {'title': 'Requests', 'screen': SupportRequestsScreen()},
+    ],
+    'My Account': [
+      {'title': 'Update Account information', 'screen': SupportRequestsScreen()},
+      {'title': 'Delete my account', 'screen': SupportRequestsScreen()},
+    ],
+  };
+
+  // Track the visibility and selected value for each dropdown
+  final Map<String, String?> _selectedValues = {};
+  final Map<String, bool> _dropdownVisibility = {};
+
+  @override
+  void initState() {
+    super.initState();
+    // Initialize dropdown visibility and selected values
+    _dropdownOptions.forEach((key, value) {
+      _selectedValues[key] = value.first['title']; // Initialize with the first option
+      _dropdownVisibility[key] = false; // Initially hide dropdowns
+    });
+  }
 
   @override
   void dispose() {
     _searchController.dispose();
     super.dispose();
+  }
+
+  // Perform the search query as you type
+  void _onSearchChanged(String value) {
+    setState(() {
+      _searchQuery = value;
+    });
+  }
+
+  void _navigateToScreen(String category, String value) {
+    final screen = _dropdownOptions[category]!
+        .firstWhere((option) => option['title'] == value)['screen'];
+    
+    // Ensure screen is not null before navigation
+    if (screen != null) {
+      Navigator.push(
+        context,
+        MaterialPageRoute(builder: (context) => screen),
+      );
+    } else {
+      // Print a log message or show an error if screen is null
+      print("Error: Screen is null for selected value: $value");
+    }
   }
 
   @override
@@ -48,7 +97,9 @@ class _HelpCenterScreenState extends State<HelpCenterScreen> {
         ),
         backgroundColor: Color(0xFF800000),
       ),
-      body: Padding(
+      // Ensures the UI resizes when the keyboard is shown
+      resizeToAvoidBottomInset: true, 
+      body: SingleChildScrollView(
         padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -65,128 +116,53 @@ class _HelpCenterScreenState extends State<HelpCenterScreen> {
             SizedBox(height: 16),
             _buildSearchBar(),
             SizedBox(height: 16),
-_buildHelpOptionWithDropdown(
-  'Get help with my orders',
-  ['Upcoming orders', 'Past orders'], 
-  _selectedOrder,
-  (newValue) {
-    setState(() {
-      _selectedOrder = newValue;
-      _isOrderDropdownVisible = false;
-    });
-    // Navigate to UpcomingOrdersScreen ONLY when 'Upcoming orders' is selected
-    if (newValue == 'Upcoming orders') {
-      Navigator.push(
-        context,
-        MaterialPageRoute(builder: (context) => GethelpwithordersScreen()),
-      );
-    }
-  },
-  _isOrderDropdownVisible,
-  () => setState(() {
-    _isOrderDropdownVisible = !_isOrderDropdownVisible;
-    _isIssueDropdownVisible = false;
-    _isRequestDropdownVisible = false;
-    _isAccountDropdownVisible = false;
-  }),
-),
-
-            if (_isOrderDropdownVisible)
-              _buildDropdownList(
-                ['Upcoming orders', 'Past orders'],
-                _selectedOrder,
-                (newValue) => setState(() {
-                  _selectedOrder = newValue;
-                  _isOrderDropdownVisible = false;
-                }),
-              ),
-            SizedBox(height: 16),
-            _buildHelpOptionWithDropdown(
-              'I’m having trouble placing an order',
-              ['Account login issues', 'Payment issues', 'App issues'],
-              _selectedIssue,
-              (newValue) => setState(() {
-                _selectedIssue = newValue;
-              }),
-              _isIssueDropdownVisible,
-              () => setState(() {
-                _isIssueDropdownVisible = !_isIssueDropdownVisible;
-                _isOrderDropdownVisible = false;
-                _isRequestDropdownVisible = false;
-                _isAccountDropdownVisible = false;
-              }),
-            ),
-            if (_isIssueDropdownVisible)
-              _buildDropdownList(
-                ['Account login issues', 'Payment issues', 'App issues'],
-                _selectedIssue,
-                (newValue) => setState(() {
-                  _selectedIssue = newValue;
-                  _isIssueDropdownVisible = false;
-                }),
-              ),
-            SizedBox(height: 16),
-            _buildHelpOptionWithDropdown(
-  'My support requests',
-  ['Requests'], 
-  _selectedRequest,
-  (newValue) => setState(() {
-    _selectedRequest = newValue;
-  }),
-  _isRequestDropdownVisible,
-  () {
-    // Toggle only the dropdown visibility without navigation
-    setState(() {
-      _isRequestDropdownVisible = !_isRequestDropdownVisible;
-      _isOrderDropdownVisible = false;
-      _isIssueDropdownVisible = false;
-      _isAccountDropdownVisible = false;
-    });
-  },
-),
-if (_isRequestDropdownVisible)
-  _buildDropdownList(
-    ['Requests'], 
-    _selectedRequest,
-    (newValue) {
-      setState(() {
-        _selectedRequest = newValue;
-        _isRequestDropdownVisible = false;
-      });
-      // Navigate to SupportRequestsScreen ONLY when 'Requests' is selected
-      if (newValue == 'Requests') {
-        Navigator.push(
-          context,
-          MaterialPageRoute(builder: (context) => SupportRequestsScreen()),
-        );
-      }
-    },
-  ),
-            SizedBox(height: 16),
-            _buildHelpOptionWithDropdown(
-              'My Account',
-              ['Update Account information', 'Delete my account'],
-              _selectedAccount,
-              (newValue) => setState(() {
-                _selectedAccount = newValue;
-              }),
-              _isAccountDropdownVisible,
-              () => setState(() {
-                _isAccountDropdownVisible = !_isAccountDropdownVisible;
-                _isOrderDropdownVisible = false;
-                _isIssueDropdownVisible = false;
-                _isRequestDropdownVisible = false;
-              }),
-            ),
-            if (_isAccountDropdownVisible)
-              _buildDropdownList(
-                ['Update Account information', 'Delete my account'],
-                _selectedAccount,
-                (newValue) => setState(() {
-                  _selectedAccount = newValue;
-                  _isAccountDropdownVisible = false;
-                }),
-              ),
+            ..._dropdownOptions.keys.map((category) {
+              return Column(
+                children: [
+                  _buildHelpOptionWithDropdown(
+                    category,
+                    _dropdownOptions[category]!
+                        .where((option) => option['title']!
+                            .toLowerCase()
+                            .contains(_searchQuery.toLowerCase()))
+                        .toList(), // Filter options based on search
+                    _selectedValues[category] ?? '',
+                    (newValue) {
+                      setState(() {
+                        _selectedValues[category] = newValue;
+                        _dropdownVisibility[category] = false;
+                      });
+                      _navigateToScreen(category, newValue);
+                    },
+                    _dropdownVisibility[category] ?? false,
+                    () => setState(() {
+                      _dropdownVisibility.forEach((key, _) {
+                        _dropdownVisibility[key] = key == category
+                            ? !_dropdownVisibility[key]!
+                            : false;
+                      });
+                    }),
+                  ),
+                  if (_dropdownVisibility[category]!)
+                    _buildDropdownList(
+                      _dropdownOptions[category]!
+                          .where((option) => option['title']!
+                              .toLowerCase()
+                              .contains(_searchQuery.toLowerCase()))
+                          .toList(),
+                      _selectedValues[category],
+                      (newValue) {
+                        setState(() {
+                          _selectedValues[category] = newValue;
+                          _dropdownVisibility[category] = false;
+                        });
+                        _navigateToScreen(category, newValue);
+                      },
+                    ),
+                  SizedBox(height: 16),
+                ],
+              );
+            }).toList(),
           ],
         ),
       ),
@@ -218,7 +194,7 @@ if (_isRequestDropdownVisible)
             child: TextField(
               controller: _searchController,
               decoration: InputDecoration(
-                hintText: 'Press enter to search (Eg: "Account" & enter)',
+                hintText: 'Search...',
                 hintStyle: TextStyle(
                   color: Colors.black.withOpacity(0.8),
                   fontSize: 14,
@@ -227,9 +203,7 @@ if (_isRequestDropdownVisible)
                 ),
                 border: InputBorder.none,
               ),
-              onSubmitted: (value) {
-                print('Searching for: $value');
-              },
+              onChanged: _onSearchChanged, // Update search query on change
             ),
           ),
         ],
@@ -239,9 +213,9 @@ if (_isRequestDropdownVisible)
 
   Widget _buildHelpOptionWithDropdown(
     String title,
-    List<String> options,
-    String? selectedValue,
-    Function(String?) onChanged,
+    List<Map<String, dynamic>> options,
+    String selectedValue,
+    Function(String) onChanged,
     bool isDropdownVisible,
     VoidCallback toggleDropdownVisibility,
   ) {
@@ -289,11 +263,15 @@ if (_isRequestDropdownVisible)
     );
   }
 
-  Widget _buildDropdownList(List<String> options, String? selectedValue, Function(String?) onChanged) {
+  Widget _buildDropdownList(
+    List<Map<String, dynamic>> options,
+    String? selectedValue,
+    Function(String) onChanged,
+  ) {
     return Align(
-      alignment: Alignment.centerRight,  
+      alignment: Alignment.centerRight,
       child: Container(
-        width: 250, 
+        width: 500,
         decoration: BoxDecoration(
           color: Colors.white,
           borderRadius: BorderRadius.circular(8),
@@ -306,15 +284,13 @@ if (_isRequestDropdownVisible)
           ],
         ),
         child: Column(
-          children: options.map((String value) {
+          children: options.map((option) {
             return ListTile(
               title: Text(
-                value,
+                option['title'],
                 style: TextStyle(color: Color(0xFF800000)),
               ),
-              onTap: () {
-                onChanged(value);
-              },
+              onTap: () => onChanged(option['title']),
             );
           }).toList(),
         ),

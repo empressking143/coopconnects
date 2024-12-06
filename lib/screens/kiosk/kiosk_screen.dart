@@ -13,6 +13,13 @@ class KioskScreen extends StatefulWidget {
 
 class _KioskScreenState extends State<KioskScreen> {
   @override
+  void initState() {
+    super.initState();
+    // Schedule fetching kiosks after the widget is fully built
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      Provider.of<KioskProvider>(context, listen: false).fetchKiosks();
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
