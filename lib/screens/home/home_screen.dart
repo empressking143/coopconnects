@@ -1,75 +1,96 @@
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
-import '/providers/auth_provider.dart'; // Ensure this path matches your project structure
-import '/screens/auth/login_screen.dart'; // Import for navigating back to the login screen
+import 'package:lottie/lottie.dart';
+import 'package:coopconnects/widgets/app_bar.dart'; // Import the custom AppBar
+import 'package:coopconnects/widgets/nav_bar.dart'; // Import the custom NavBar
 
 class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    final authProvider = Provider.of<AuthProvider>(context);
-
     return Scaffold(
-      appBar: AppBar(
-        title: const Text(
-          'Home',
-          style: TextStyle(
-            fontFamily: 'Poppins',
-            fontWeight: FontWeight.w600,
-          ),
-        ),
-        backgroundColor: const Color(0xFF800000), // Match your app's main color
-        actions: [
-          IconButton(
-            icon: Icon(Icons.logout),
-            onPressed: () async {
-              // Perform logout action
-              await authProvider.logout();
-              // Navigate back to the login screen after logout
-              Navigator.pushReplacement(
-                context,
-                MaterialPageRoute(builder: (context) => LoginScreen()),
-              );
-            },
-          ),
-        ],
-      ),
-      body: Center(
+      appBar: AppBarWidget(), // Use the custom AppBar
+      backgroundColor: Color(0xFFFFF8E8),
+      resizeToAvoidBottomInset: true, // Prevent overflow when keyboard appears
+      body: SingleChildScrollView(
+        padding: const EdgeInsets.all(20.0),
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const Text(
-              'Welcome to CoopConnects!',
-              style: TextStyle(
-                fontSize: 28,
-                fontFamily: 'Poppins',
-                fontWeight: FontWeight.bold,
-                color: Color(0xFF800000),
-              ),
-              textAlign: TextAlign.center,
+            // Row 1: "Hot Deals" with Fire Animation
+            Row(
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: [
+                Text(
+                  'Hot Deals',
+                  style: TextStyle(
+                    fontSize: 24,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.black,
+                  ),
+                ),
+                SizedBox(width: 8), // Space between text and animation
+                Lottie.asset(
+                  'assets/animations/fire.json',
+                  width: 40,
+                  height: 40,
+                ),
+              ],
             ),
-            const SizedBox(height: 20),
-            ElevatedButton(
-              onPressed: () {
-                // Add navigation to other features/screens here
-              },
-              child: const Text(
-                'Explore Menu',
-                style: TextStyle(
-                  fontSize: 18,
-                ),
+            SizedBox(height: 10), // Space between "Hot Deals" and advertisement
+
+            // Large Rectangle Advertisement
+            ClipRRect(
+              borderRadius: BorderRadius.circular(10),
+              child: Image.asset(
+                'assets/images/advertisement1.png',
+                width: double.infinity,
+                height: 200,
+                fit: BoxFit.cover,
               ),
-              style: ElevatedButton.styleFrom(
-                backgroundColor: const Color(0xFF800000),
-                foregroundColor: Colors.white,
-                padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 15),
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(12),
+            ),
+            SizedBox(height: 20), // Space between rows
+
+            // Row 2: Two Square Advertisements
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                // First Square
+                ClipRRect(
+                  borderRadius: BorderRadius.circular(10),
+                  child: Image.asset(
+                    'assets/images/advertisement2.png',
+                    width: (MediaQuery.of(context).size.width / 2) - 30,
+                    height: 150,
+                    fit: BoxFit.cover,
+                  ),
                 ),
+                // Second Square
+                ClipRRect(
+                  borderRadius: BorderRadius.circular(10),
+                  child: Image.asset(
+                    'assets/images/advertisement3.png',
+                    width: (MediaQuery.of(context).size.width / 2) - 30,
+                    height: 150,
+                    fit: BoxFit.cover,
+                  ),
+                ),
+              ],
+            ),
+            SizedBox(height: 20), // Space between rows
+
+            // Row 3: Large Rectangle Advertisement
+            ClipRRect(
+              borderRadius: BorderRadius.circular(10),
+              child: Image.asset(
+                'assets/images/advertisement4.png',
+                width: double.infinity,
+                height: 200,
+                fit: BoxFit.cover,
               ),
             ),
           ],
         ),
       ),
+      bottomNavigationBar: NavBar(), // Include the custom NavBar at the bottom
     );
   }
 }

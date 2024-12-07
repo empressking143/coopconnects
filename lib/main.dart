@@ -2,18 +2,27 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'providers/auth_provider.dart';
-import 'screens/auth/splash_screen.dart'; // Import your custom splash screen
-import 'screens/home/home_screen.dart'; // Import your Home Screen
-import 'screens/auth/signup_screen.dart'; // Import your SignUp Screen
+import 'screens/auth/splash_screen.dart';
+import 'screens/home/home_screen.dart';
+import 'screens/auth/signup_screen.dart';
+import 'providers/cart_provider.dart';
+import 'providers/menu_provider.dart';
+import 'providers/kiosk_provider.dart';
+import 'providers/notification_provider.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  // Initialize Firebase
   await Firebase.initializeApp();
 
   runApp(
-    ChangeNotifierProvider(
-      create: (context) => AuthProvider(),
+    MultiProvider(
+      providers: [
+        ChangeNotifierProvider(create: (_) => MenuProvider()),
+        ChangeNotifierProvider(create: (_) => CartProvider()),
+        ChangeNotifierProvider(create: (_) => KioskProvider()),
+        ChangeNotifierProvider(create: (_) => NotificationProvider()),
+        ChangeNotifierProvider(create: (_) => AuthProvider()), 
+      ],
       child: MyApp(),
     ),
   );

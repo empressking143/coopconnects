@@ -6,7 +6,7 @@ version: 1.0.0+1
 
 # SDK version constraint
 environment:
-  sdk: ">=3.0.0 <4.0.0"
+  sdk: ">=3.5.0 <4.0.0"
 
 # Define your dependencies here.
 dependencies:
@@ -15,6 +15,9 @@ dependencies:
 
   # UI and Icons
   font_awesome_flutter: ^10.8.0
+
+  # State management
+  provider: ^6.1.2                  # State management with Provider
 
   # Firebase dependencies
   firebase_core: ^3.8.0             # Initialize Firebase
@@ -27,22 +30,23 @@ dependencies:
   google_sign_in: ^6.2.2            # Google sign-in
   flutter_facebook_auth: ^7.1.1     # Facebook sign-in
 
-  # State management
-  provider: ^6.1.2                  # State management with Provider
-
-  # Local notifications and UI enhancements
+  # Notifications and Animations
   flutter_local_notifications: ^18.0.1 # Local notifications
-  flutter_staggered_grid_view: ^0.7.0  # Staggered grid layout
+  lottie: ^3.1.3                    # For animations (e.g., fire.json)
 
-  # Image caching and internationalization
+  # UI Enhancements
+  flutter_staggered_grid_view: ^0.7.0  # Staggered grid layout
+  flutter_native_splash: ^2.4.3        # Native splash screen
+
+  # Image caching and formatting
   cached_network_image: ^3.4.1       # Caches images from the network
   intl: ^0.19.0                      # Internationalization
 
   # Form handling and validation
-  flutter_form_builder: ^9.5.0       # For building forms
+  flutter_form_builder: ^9.5.0       # For building and validating forms
 
-  # Splash screen package
-  flutter_native_splash: ^2.4.3      # Native splash screen
+  # Shared preferences for local storage
+  shared_preferences: ^2.3.3         # For storing user preferences locally
 
 dev_dependencies:
   flutter_test:
@@ -55,10 +59,33 @@ dev_dependencies:
 flutter:
   uses-material-design: true
   assets:
+    # Image assets
     - assets/images/logo.png
-    - assets/images/logo.gif           # Ensure these images exist in the specified paths
+    - assets/images/logo.gif
+    - assets/images/advertisement1.png
+    - assets/images/advertisement2.png
+    - assets/images/advertisement3.png
+    - assets/images/advertisement4.png
+    - assets/images/beefkarekare.png
+    - assets/images/dinuguan.png
+    - assets/images/chickencurry.png
+    - assets/images/qrcode.png
+    - assets/images/user_icon.png
+    - assets/images/ming.png
+    - assets/images/beef-kare-kare.jpg
 
-# Native splash screen configuration (outside dependencies)
+    # Animation assets
+    - assets/animations/fire.json
+
+  fonts:
+    - family: Roboto
+      fonts:
+        - asset: assets/fonts/Roboto/Roboto-Regular.ttf
+        - asset: assets/fonts/Roboto/Roboto-Bold.ttf
+    - family: NotoSans
+      fonts:
+        - asset: assets/fonts/Noto_Sans/NotoSans-VariableFont_wdth,wght.ttf
+
 flutter_native_splash:
   color: "#800000"                     # Deep Red Background color
   image: assets/images/logo.png        # Logo image for the splash screen
