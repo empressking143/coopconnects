@@ -3,7 +3,7 @@ name: Deploy Flutter Web to GitHub Pages
 on:
   push:
     branches:
-      - main  # Change this to your default branch if different
+      - main  # Change this to your main branch if different
 
 jobs:
   build:
@@ -13,19 +13,22 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v3
 
-      - name: Setup Flutter
+      - name: Install Flutter
         uses: subosito/flutter-action@v2
         with:
-          flutter-version: "3.x"  # Update to your Flutter version
+          flutter-version: "3.16.0"  # Change this to your actual Flutter version
+
+      - name: Verify Flutter Installation
+        run: flutter --version  # This ensures Flutter is installed before proceeding
 
       - name: Install dependencies
         run: flutter pub get
 
-      - name: Build web
+      - name: Build Flutter Web
         run: flutter build web --base-href "/coopconnects/"
 
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
+          github_token: ${{ secrets.GH_PAT }}  # Use a PAT if needed
           publish_dir: ./build/web
