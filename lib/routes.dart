@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'screens/auth/login_screen.dart';
-import 'screens/auth/signup_screen.dart';
+//import 'screens/auth/signup_screen.dart';
 import 'screens/auth/forgot_password_screen.dart';
 import 'screens/home/home_screen.dart';
-import 'screens/home/kiosk_search_screen.dart';
+//import 'screens/home/kiosk_search_screen.dart';
 import 'screens/menu/menu_screen.dart';
-import 'screens/menu/menu_filter_screen.dart';
+//import 'screens/menu/menu_filter_screen.dart';
 import 'screens/order/order_screen.dart';
-import 'screens/order/order_detail_screen.dart';
-import 'screens/order/order_confirmation_screen.dart';
+//import 'screens/order/order_detail_screen.dart';
+//import 'screens/order/order_confirmation_screen.dart';
 import 'screens/cart/cart_screen.dart';
 import 'screens/profile/profile_screen.dart';
 import 'screens/notification/notification_screen.dart';
@@ -34,24 +34,24 @@ class AppRoutes {
     switch (settings.name) {
       case loginScreen:
         return MaterialPageRoute(builder: (_) => LoginScreen());
-      case signupScreen:
-        return MaterialPageRoute(builder: (_) => SignupScreen());
+      //case signupScreen:
+        //return MaterialPageRoute(builder: (_) => SignupScreen());
       case forgotPasswordScreen:
         return MaterialPageRoute(builder: (_) => ForgotPasswordScreen());
       case homeScreen:
         return MaterialPageRoute(builder: (_) => HomeScreen());
-      case kioskSearchScreen:
-        return MaterialPageRoute(builder: (_) => KioskSearchScreen());
+      //case kioskSearchScreen:
+        //return MaterialPageRoute(builder: (_) => KioskSearchScreen());
       case menuScreen:
         return MaterialPageRoute(builder: (_) => MenuScreen());
-      case menuFilterScreen:
-        return MaterialPageRoute(builder: (_) => MenuFilterScreen());
+      //case menuFilterScreen:
+      //  return MaterialPageRoute(builder: (_) => MenuFilterScreen());
       case orderScreen:
         return MaterialPageRoute(builder: (_) => OrderScreen());
-      case orderDetailScreen:
-        return MaterialPageRoute(builder: (_) => OrderDetailScreen());
-      case orderConfirmationScreen:
-        return MaterialPageRoute(builder: (_) => OrderConfirmationScreen());
+      //case orderDetailScreen:
+      //  return MaterialPageRoute(builder: (_) => OrderDetailScreen());
+      //case orderConfirmationScreen:
+      //  return MaterialPageRoute(builder: (_) => OrderConfirmationScreen());
       case cartScreen:
         return MaterialPageRoute(builder: (_) => CartScreen());
       case profileScreen:

@@ -1,5 +1,5 @@
 import 'package:coopconnects/screens/auth/signup_screen.dart';
-import 'package:flutter/foundation.dart';
+//import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../../providers/auth_provider.dart';
@@ -12,7 +12,7 @@ class GradientIcon extends StatelessWidget {
   final IconData icon;
   final double size;
 
-  GradientIcon({required this.icon, this.size = 48.0});
+  const GradientIcon({super.key, required this.icon, this.size = 48.0});
 
   @override
   Widget build(BuildContext context) {
@@ -43,6 +43,8 @@ class GradientIcon extends StatelessWidget {
 class LoginScreen extends StatelessWidget {
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
+
+  LoginScreen({super.key});
 
   @override
   Widget build(BuildContext context) {

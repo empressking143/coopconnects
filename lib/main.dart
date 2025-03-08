@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'firebase_options.dart'; // Import the Firebase options
 import 'providers/auth_provider.dart';
 import 'screens/auth/splash_screen.dart';
 import 'screens/home/home_screen.dart';
@@ -10,9 +11,12 @@ import 'providers/menu_provider.dart';
 import 'providers/kiosk_provider.dart';
 import 'providers/notification_provider.dart';
 
+
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await Firebase.initializeApp();
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform, // Use Firebase options for Web
+  );
 
   runApp(
     MultiProvider(
@@ -39,8 +43,8 @@ class MyApp extends StatelessWidget {
       ),
       home: SplashScreen(), // Set SplashScreen as the first screen
       routes: {
-        '/home': (context) => HomeScreen(), // Home screen after login
-        '/signup': (context) => SignUpScreen(), // Sign up screen if not logged in
+        '/home': (context) => HomeScreen(),
+        '/signup': (context) => SignUpScreen(),
       },
     );
   }

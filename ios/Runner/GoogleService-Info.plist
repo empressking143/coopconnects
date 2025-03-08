@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>869358196540-p9agak14a0773pr6sd0pekf89u6fu5tl.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.869358196540-p9agak14a0773pr6sd0pekf89u6fu5tl</string>
+	<key>ANDROID_CLIENT_ID</key>
+	<string>869358196540-2krhi1ulo6v1psgkr7pftpktaub1a3pj.apps.googleusercontent.com</string>
+	<key>API_KEY</key>
+	<string>AIzaSyCx4Y6Lx5Uik6pWx8GtSlEs3dDlq2LamPU</string>
+	<key>GCM_SENDER_ID</key>
+	<string>869358196540</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.example.coopconnects</string>
+	<key>PROJECT_ID</key>
+	<string>coopconnects</string>
+	<key>STORAGE_BUCKET</key>
+	<string>coopconnects.firebasestorage.app</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:869358196540:ios:f7b0b05eec6856c8d7b039</string>
+	<key>DATABASE_URL</key>
+	<string>https://coopconnects-default-rtdb.asia-southeast1.firebasedatabase.app</string>
+</dict>
+</plist>
